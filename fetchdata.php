@@ -26,7 +26,7 @@ $profile = $obj['profile'];
 
 //we can add more things like ip from which this request is coming and all.
 
-$url = $_SERVER['SERVER_NAME'] . "/MyndVR_MyFamily/services/fetchdata_service.php";
+$url = $_SERVER['SERVER_NAME'] . "/MyndVR_MyFamily/MindVRMyFamily/services/fetchdata_service.php";
 
 echo '<h1>URL: ' . $url . '</h1>';
     
