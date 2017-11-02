@@ -19,7 +19,7 @@ $data = array(
 
 //we can add more things like ip from which this request is coming and all.
 
-$url = $_SERVER['SERVER_NAME'] . "/MyndVR_MyFamily/services/login_service.php";
+$url = $_SERVER['SERVER_NAME'] . "/MyndVR_MyFamily/MindVRMyFamily/services/login_service.php";
 
 echo '<h1>URL: ' . $url . '</h1>';
     
