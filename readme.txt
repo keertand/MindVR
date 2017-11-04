@@ -19,7 +19,7 @@ type :
 
 Service Link:
 
-link to send to: http://keertandakarapu.com/projects/MindVRMyFamily/services/ultimate_service
+link to send to: http://keertandakarapu.com/projects/MindVRMyFamily/services/ultimate_service.php
 
 The link is valid for all the services. The appropriate service is called depending upon the service name
 
