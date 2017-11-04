@@ -32,7 +32,7 @@ $data = array(
 
 $content = json_encode($data);
 
-$url = $_SERVER['SERVER_NAME'] . "/MyndVR_MyFamily/MindVRMyFamily/services/signup_service.php";
+$url = $_SERVER['SERVER_NAME'] . "/MyndVRMyFamily/services/signup_service.php";
 
 
 $curl = curl_init($url);

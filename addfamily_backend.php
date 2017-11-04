@@ -4,17 +4,25 @@
 
 require "userauth.php";
 
-$seniorname = $_POST["seniorname"];
+$firstname = $_POST['firstname'];
+$lastname = $_POST['lastname'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$profile = $_POST['addingto'];
 
 
 $ip = $_SERVER['REMOTE_ADDR'];
 
 $data = array(
-    'service'      => 'addsenior',
+    'service'      => 'addfamilymember',
     'user_id'    => $user_id,
     'token'       => $token,
-	'seniorname' => $seniorname,
+	'profile' => $profile,
 	'ip' => $ip,
+	'firstname' => $firstname,
+	'lastname' => $lastname,
+	'password' => $password,
+	'email' => $email,
     'description' => 'some description'
 );
 
@@ -44,14 +52,13 @@ if (!( $status == 201 || $status == 200) ){
 }
 
 
-
 curl_close($curl);
 
 $response = json_decode($json_response, true);
 
 var_dump($json_response);
 
-echo $response;
+
 header('Location: index.php?pagetype=profile');
 
 

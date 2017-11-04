@@ -12,7 +12,8 @@ type :
 5 - videoupload
 6 - videodelete
 7 - senior added
-8 - caretaker added
+8 - senior deleted
+9 - family member added
 .. more yet to be added.
 
 

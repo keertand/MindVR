@@ -33,6 +33,11 @@ elseif($service=="addsenior")
 	$url = $actual_link . "/addsenior_service.php";
 	$flag = true;		
 }
+elseif($service=="addfamilymember")
+{
+	$url = $actual_link . "/addfamilymember_service.php";
+	$flag = true;		
+}
 
 
 

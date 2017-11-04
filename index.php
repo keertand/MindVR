@@ -110,6 +110,16 @@ $('#myModal').on('shown.bs.modal', function () {
 })
 
 
+
+$('.actbtns .addfambtn').on('click',function(){
+			
+			var profile = $(this).attr('data-profile');
+			$('#addingto').val(profile);
+			
+		});
+
+
+
 </script>
 
 
