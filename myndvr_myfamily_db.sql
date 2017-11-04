@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2017 at 07:36 PM
+-- Generation Time: Nov 04, 2017 at 12:42 AM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.19
 
@@ -19,20 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `myndvr_myfamily`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `caretakers`
---
-
-CREATE TABLE `caretakers` (
-  `user_id` int(6) NOT NULL,
-  `profile` int(3) NOT NULL,
-  `caretaker_id` int(6) NOT NULL,
-  `timestamp` varchar(100) NOT NULL,
-  `flag` int(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -71,6 +57,21 @@ CREATE TABLE `env1` (
 
 INSERT INTO `env1` (`user_id`, `profile`, `img_no`, `img_placeholder_1`, `img_placeholder_2`, `img_placeholder_3`, `img_placeholder_4`, `img_placeholder_5`, `img_placeholder_6`, `img_placeholder_7`, `img_placeholder_8`) VALUES
 (1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `familymembers`
+--
+
+CREATE TABLE `familymembers` (
+  `family_addition_id` int(11) NOT NULL,
+  `user_id` int(6) NOT NULL,
+  `profile` int(5) NOT NULL,
+  `family_id` int(6) NOT NULL,
+  `timestamp` varchar(100) NOT NULL,
+  `flag` int(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,14 @@ INSERT INTO `logfile` (`logid`, `type`, `activity`, `timestamp`, `user_id`, `con
 (12, 7, 'addsenior', '1509089223', 3, 1, '127.0.0.1'),
 (13, 7, 'addsenior', '1509089280', 3, 1, '127.0.0.1'),
 (14, 7, 'addsenior', '1509090139', 3, 2, '127.0.0.1'),
-(15, 7, 'addsenior', '1509090387', 3, 3, '127.0.0.1');
+(15, 7, 'addsenior', '1509090387', 3, 3, '127.0.0.1'),
+(16, 7, 'addsenior', '1509652759', 3, 4, '127.0.0.1'),
+(17, 1, 'login', '1509755744', 1, NULL, '127.0.0.1'),
+(18, 1, 'login', '1509755793', 1, NULL, '127.0.0.1'),
+(19, 1, 'login', '1509755816', 1, NULL, '127.0.0.1'),
+(20, 1, 'login', '1509755873', 1, NULL, '127.0.0.1'),
+(21, 1, 'login', '1509755891', 1, NULL, '127.0.0.1'),
+(22, 1, 'login', '1509756033', 1, NULL, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -160,7 +168,8 @@ CREATE TABLE `seniors` (
 
 INSERT INTO `seniors` (`s_id`, `user_id`, `profile`, `fullname`, `timestamp`, `flag`) VALUES
 (1, 3, 2, 'uncle bob', '1509090139', 1),
-(2, 3, 3, 'aunt may', '1509090387', 1);
+(2, 3, 3, 'aunt may', '1509090387', 1),
+(3, 3, 4, 'uncle joe', '1509652759', 1);
 
 -- --------------------------------------------------------
 
@@ -207,7 +216,7 @@ CREATE TABLE `userlogin` (
 --
 
 INSERT INTO `userlogin` (`user_id`, `username`, `password`, `usertype`, `token`, `lastlogin`, `flag`) VALUES
-(1, 'admin', 'admin', 3, 'qzP#i$&xNpg3^+vZ2mBQfW40DM@UJXjVR7(%?:w.', '1509056278', 0),
+(1, 'admin', 'admin', 3, 'xdO+QLYEeUj5@(G)-pF9Do1u?yh6_n$kCTKfPZ4t', '1509756033', 0),
 (2, 'hello', 'k', 2, '0', '0', 0),
 (3, 'kd', 'kd', 2, 'yx#E0@MS6(1W:&Nh8^lZ$Fd27cmpzf,vLao+sUYK', '1509089082', 0);
 
@@ -233,6 +242,12 @@ CREATE TABLE `videodb` (
 --
 ALTER TABLE `connectedmedia`
   ADD PRIMARY KEY (`img_id`);
+
+--
+-- Indexes for table `familymembers`
+--
+ALTER TABLE `familymembers`
+  ADD PRIMARY KEY (`family_addition_id`);
 
 --
 -- Indexes for table `imagedb`
@@ -277,6 +292,11 @@ ALTER TABLE `videodb`
 --
 
 --
+-- AUTO_INCREMENT for table `familymembers`
+--
+ALTER TABLE `familymembers`
+  MODIFY `family_addition_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `imagedb`
 --
 ALTER TABLE `imagedb`
@@ -285,12 +305,12 @@ ALTER TABLE `imagedb`
 -- AUTO_INCREMENT for table `logfile`
 --
 ALTER TABLE `logfile`
-  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `seniors`
 --
 ALTER TABLE `seniors`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `userlogin`
 --

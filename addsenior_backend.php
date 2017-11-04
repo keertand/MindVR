@@ -20,7 +20,7 @@ $data = array(
 
 //we can add more things like ip from which this request is coming and all.
 
-$url = $_SERVER['SERVER_NAME'] . "/MyndVR_MyFamily/MindVRMyFamily/services/addsenior_service.php";
+$url = $_SERVER['SERVER_NAME'] . "/MindVRMyFamily/services/ultimate_service.php";
 
 echo '<h1>URL: ' . $url . '</h1>';
     
@@ -52,7 +52,7 @@ $response = json_decode($json_response, true);
 var_dump($json_response);
 
 echo $response;
-//header('Location: index.php?pagetype=profile');
+header('Location: index.php?pagetype=profile');
 
 
 

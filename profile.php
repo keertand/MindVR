@@ -1,3 +1,4 @@
+
 <?php 
 
 include "userauth.php";
@@ -140,6 +141,7 @@ echo '<h2>Seniors</h2>';
 		
 		echo '<div class="post"><div class="row">';
 		echo '<h4>'.$seniorname.'</h4>';
+		echo '<button class="btn btn-primary" data-toggle="modal" data-target="#addcaretaker">Add a family member</button>';
 		echo '<div class="delbtn">
 		<div class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></div>
 		</div></div>';
@@ -163,39 +165,6 @@ echo '<h2>Seniors</h2>';
 ?>
 </div>
 	
-<div class="row">
-<?php
 
-$count = 0;
-
-echo '<h2>CareTakers</h2>';
-	/*
-	$query = "SELECT * FROM env1 WHERE user_id='$user_id'";
-	$results = mysqli_query($con, $query);
-
-	while($row = mysqli_fetch_array($results))
-	{
-		echo '<div class="post">';
-		echo '<h2>'.$envname.'</h2> <h2>Profile: '.$row["profile"].'</h2>';
-		echo '<div class="actionbtns">
-		<div class="btn btn-primary">View</div>
-		<div class="btn btn-primary">Edit</div>
-		<div class="btn btn-primary">Delete</div>
-		</div>';
-		echo '</div>';
-		
-		$count = $count + 1;
-	}
-	*/
-	
-	if($count==0)
-	{
-		echo '<div class="post">';
-		echo 'You don\'t have any CareTakers listed yet.<br><br><button class="btn btn-primary" data-toggle="modal" data-target="#addcaretaker">Add a caretaker now</button>';
-		echo '</div>';
-	}
-	
-?>
-</div>
 </div>
 </div>
