@@ -48,11 +48,11 @@ function updatetime($timestamp,$user_id)
 	$results = mysqli_query($con, $query);
 }
 
-function addlog($type,$activity,$timestamp,$user_id,$ip)
+function addlog($type,$activity,$timestamp,$user_id,$actual_user_id,$ip)
 {
 	require '../db.php';
 	
-	$query = "Insert into logfile (type,activity,timestamp,user_id,ip) values($type,'$activity','$timestamp',$user_id,'$ip')";
+	$query = "Insert into logfile (type,activity,timestamp,user_id,content_id,ip) values($type,'$activity','$timestamp',$actual_user_id,$user_id,'$ip')";
 	$results = mysqli_query($con, $query);
 }
  
@@ -68,9 +68,29 @@ while($row = mysqli_fetch_array($results))
 	
 if($pass_actual==$password)
  {
+	 
 	 //login successfull!
+	
+	if($usertype==2)
+	{
+		$actual_user = $user_id;
+	}
+	elseif($usertype==1)
+	{
+		
+		$query = "SELECT * FROM familymembers WHERE familymember_id='$user_id'";
+		$results = mysqli_query($con, $query);
+
+		while($row = mysqli_fetch_array($results))
+		{	
+			$profile = $row['profile'];
+			$actual_user_id = $row['user_id'];
+		}
+		
+	}
+	
 	$status = '1';
-	addlog(1,$activity,$timestamp,$user_id,$ip);
+	addlog(1,$activity,$timestamp,$user_id,$actual_user_id,$ip);
 	updatetime($timestamp,$user_id);
 	
 	$token = gentoken(30); // some random to be generated, so it will act as an identifier.
@@ -80,14 +100,14 @@ else
 {
 	//login failed!
 	$status = '-1';
-	$user_id = '';
+	$actual_user_id = '';
 	$usertype ='';
 	$token = '';
 }
 
 			$result[] = array(
 							'status' => $status,
-							'user_id' => $user_id,
+							'user_id' => $actual_user_id,
 							'usertype' => $usertype,
 							'token' => $token
 							);

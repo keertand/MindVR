@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2017 at 12:42 AM
+-- Generation Time: Nov 04, 2017 at 07:05 PM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.19
 
@@ -38,6 +38,7 @@ CREATE TABLE `connectedmedia` (
 --
 
 CREATE TABLE `env1` (
+  `env_config_id` int(11) NOT NULL,
   `user_id` int(4) NOT NULL,
   `profile` int(3) NOT NULL,
   `img_no` int(2) NOT NULL,
@@ -55,8 +56,29 @@ CREATE TABLE `env1` (
 -- Dumping data for table `env1`
 --
 
-INSERT INTO `env1` (`user_id`, `profile`, `img_no`, `img_placeholder_1`, `img_placeholder_2`, `img_placeholder_3`, `img_placeholder_4`, `img_placeholder_5`, `img_placeholder_6`, `img_placeholder_7`, `img_placeholder_8`) VALUES
-(1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 1);
+INSERT INTO `env1` (`env_config_id`, `user_id`, `profile`, `img_no`, `img_placeholder_1`, `img_placeholder_2`, `img_placeholder_3`, `img_placeholder_4`, `img_placeholder_5`, `img_placeholder_6`, `img_placeholder_7`, `img_placeholder_8`) VALUES
+(1, 1, 2, 8, 1, 1, 1, 1, 1, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `environments`
+--
+
+CREATE TABLE `environments` (
+  `env_id` int(11) NOT NULL,
+  `env_name` varchar(100) NOT NULL,
+  `details` varchar(1000) NOT NULL,
+  `tablename` varchar(200) NOT NULL,
+  `timestamp` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `environments`
+--
+
+INSERT INTO `environments` (`env_id`, `env_name`, `details`, `tablename`, `timestamp`) VALUES
+(1, '3D Virtual room', '3D virtual room with pictures.. details still to be filled', 'env1', '0');
 
 -- --------------------------------------------------------
 
@@ -68,10 +90,20 @@ CREATE TABLE `familymembers` (
   `family_addition_id` int(11) NOT NULL,
   `user_id` int(6) NOT NULL,
   `profile` int(5) NOT NULL,
-  `family_id` int(6) NOT NULL,
+  `familymember_id` int(6) NOT NULL,
   `timestamp` varchar(100) NOT NULL,
   `flag` int(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `familymembers`
+--
+
+INSERT INTO `familymembers` (`family_addition_id`, `user_id`, `profile`, `familymember_id`, `timestamp`, `flag`) VALUES
+(2, 1, 2, 7, '1509815909', 1),
+(3, 1, 2, 8, '1509815998', 1),
+(4, 1, 2, 9, '1509816129', 1),
+(5, 1, 2, 10, '1509816225', 1);
 
 -- --------------------------------------------------------
 
@@ -101,7 +133,8 @@ INSERT INTO `imagedb` (`img_id`, `img_link`, `user_id`, `img_name`, `videoflag`,
 (7, 'images/user_resources/kd/kd_image_1509084784.jpeg', '3', 'chumma', 0, ''),
 (8, 'images/user_resources/kd/kd_image_1509085060.jpg', '3', 'chumma', 0, '1509085060'),
 (9, 'images/user_resources/kd/kd_image_1509085175.jpeg', '3', '', 0, '1509085175'),
-(10, 'images/user_resources/kd/kd_image_1509085329.jpeg', '3', '', 0, '1509085329');
+(10, 'images/user_resources/kd/kd_image_1509085329.jpeg', '3', '', 0, '1509085329'),
+(11, 'images/user_resources/1_1509816129/1_1509816129_image_1509819427.jpg', '1', 'trial pic', 0, '1509819427');
 
 -- --------------------------------------------------------
 
@@ -145,7 +178,16 @@ INSERT INTO `logfile` (`logid`, `type`, `activity`, `timestamp`, `user_id`, `con
 (19, 1, 'login', '1509755816', 1, NULL, '127.0.0.1'),
 (20, 1, 'login', '1509755873', 1, NULL, '127.0.0.1'),
 (21, 1, 'login', '1509755891', 1, NULL, '127.0.0.1'),
-(22, 1, 'login', '1509756033', 1, NULL, '127.0.0.1');
+(22, 1, 'login', '1509756033', 1, NULL, '127.0.0.1'),
+(23, 7, 'addsenior', '1509756743', 1, 2, '127.0.0.1'),
+(24, 1, 'login', '1509758184', 1, NULL, '127.0.0.1'),
+(27, 9, 'addfamilymember', '1509815998', 1, 3, '127.0.0.1'),
+(28, 9, 'addfamilymember', '1509816129', 1, 4, '127.0.0.1'),
+(29, 9, 'addfamilymember', '1509816225', 1, 5, '127.0.0.1'),
+(30, 1, 'login', '1509818510', 9, NULL, '127.0.0.1'),
+(31, 1, 'login', '1509819356', 1, 9, '127.0.0.1'),
+(32, 1, 'login', '1509819382', 1, 9, '127.0.0.1'),
+(33, 3, 'image_upload', '1509819427', 1, 11, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -158,6 +200,7 @@ CREATE TABLE `seniors` (
   `user_id` int(6) NOT NULL,
   `profile` int(3) NOT NULL,
   `fullname` varchar(200) NOT NULL,
+  `details` varchar(500) NOT NULL,
   `timestamp` varchar(100) NOT NULL,
   `flag` int(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -166,10 +209,21 @@ CREATE TABLE `seniors` (
 -- Dumping data for table `seniors`
 --
 
-INSERT INTO `seniors` (`s_id`, `user_id`, `profile`, `fullname`, `timestamp`, `flag`) VALUES
-(1, 3, 2, 'uncle bob', '1509090139', 1),
-(2, 3, 3, 'aunt may', '1509090387', 1),
-(3, 3, 4, 'uncle joe', '1509652759', 1);
+INSERT INTO `seniors` (`s_id`, `user_id`, `profile`, `fullname`, `details`, `timestamp`, `flag`) VALUES
+(1, 3, 2, 'uncle bob', '', '1509090139', 1),
+(2, 3, 3, 'aunt may', '', '1509090387', 1),
+(3, 3, 4, 'uncle joe', '', '1509652759', 1),
+(4, 1, 2, 'uncle joe', 'The patient is a ward member of xyz faciltiy, and is suffering from dimensia.', '1509756743', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test`
+--
+
+CREATE TABLE `test` (
+  `ju` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -193,7 +247,9 @@ CREATE TABLE `userdetails` (
 INSERT INTO `userdetails` (`user_id`, `username`, `firstname`, `lastname`, `email`, `createdon`) VALUES
 (34, 'yo', 'yo', 'yo', 'yo@gmail.com', '1509063424'),
 (2, 'hello', 'h', 'k', 'k@gm.com', '1509079141'),
-(3, 'kd', 'keertan', 'dakarapu', 'kxd160830@utdallas.edu', '1509079258');
+(3, 'kd', 'keertan', 'dakarapu', 'kxd160830@utdallas.edu', '1509079258'),
+(9, '1_1509816129', 'sneha', 'madasu', 'yo@gmail.com', '1509816129'),
+(10, '1_1509816225', 'anirush', 'bose', 'anirudh@gmail.com', '1509816225');
 
 -- --------------------------------------------------------
 
@@ -216,9 +272,11 @@ CREATE TABLE `userlogin` (
 --
 
 INSERT INTO `userlogin` (`user_id`, `username`, `password`, `usertype`, `token`, `lastlogin`, `flag`) VALUES
-(1, 'admin', 'admin', 3, 'xdO+QLYEeUj5@(G)-pF9Do1u?yh6_n$kCTKfPZ4t', '1509756033', 0),
+(1, 'admin', 'admin', 3, 'G)A@hsO#XWEm&fVjvUn(yZ=NRPSgBe3Y?pL!4k2J', '1509758184', 0),
 (2, 'hello', 'k', 2, '0', '0', 0),
-(3, 'kd', 'kd', 2, 'yx#E0@MS6(1W:&Nh8^lZ$Fd27cmpzf,vLao+sUYK', '1509089082', 0);
+(3, 'kd', 'kd', 2, 'yx#E0@MS6(1W:&Nh8^lZ$Fd27cmpzf,vLao+sUYK', '1509089082', 0),
+(9, '1_1509816129', 'yo', 1, 'vVHGi%_:F@b;Y4AT+Byr?95KIUt,(Ck&P3p0lsEh', '1509819382', 1),
+(10, '1_1509816225', 'yo', 1, '0', '0', 1);
 
 -- --------------------------------------------------------
 
@@ -242,6 +300,18 @@ CREATE TABLE `videodb` (
 --
 ALTER TABLE `connectedmedia`
   ADD PRIMARY KEY (`img_id`);
+
+--
+-- Indexes for table `env1`
+--
+ALTER TABLE `env1`
+  ADD PRIMARY KEY (`env_config_id`);
+
+--
+-- Indexes for table `environments`
+--
+ALTER TABLE `environments`
+  ADD PRIMARY KEY (`env_id`);
 
 --
 -- Indexes for table `familymembers`
@@ -292,30 +362,40 @@ ALTER TABLE `videodb`
 --
 
 --
+-- AUTO_INCREMENT for table `env1`
+--
+ALTER TABLE `env1`
+  MODIFY `env_config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `environments`
+--
+ALTER TABLE `environments`
+  MODIFY `env_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `familymembers`
 --
 ALTER TABLE `familymembers`
-  MODIFY `family_addition_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `family_addition_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `imagedb`
 --
 ALTER TABLE `imagedb`
-  MODIFY `img_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `img_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `logfile`
 --
 ALTER TABLE `logfile`
-  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `seniors`
 --
 ALTER TABLE `seniors`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `userlogin`
 --
 ALTER TABLE `userlogin`
-  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

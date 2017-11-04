@@ -21,6 +21,7 @@ include "userauth.php";
       <div class="modal-body">
 		<form method="POST" action="addsenior_backend.php">
 			<input type="text" class="inptxt" placeholder="Senior Name" name="seniorname" />
+			<input type="text" class="inptxt" placeholder="Senior Details.." name="details" />
 			<div class="row">
 				<input type="submit" class="btn btn-primary" value="Add" />
 			</div>
@@ -75,24 +76,20 @@ include "userauth.php";
 $count = 0;
 
 echo '<h2>Available Environments</h2>';
-	/*
-	$query = "SELECT * FROM env1 WHERE user_id='$user_id'";
+	
+	$query = "SELECT * FROM environments";
 	$results = mysqli_query($con, $query);
 
 	while($row = mysqli_fetch_array($results))
 	{
 		echo '<div class="post">';
-		echo '<h2>'.$envname.'</h2> <h2>Profile: '.$row["profile"].'</h2>';
-		echo '<div class="actionbtns">
-		<div class="btn btn-primary">View</div>
-		<div class="btn btn-primary">Edit</div>
-		<div class="btn btn-primary">Delete</div>
-		</div>';
+		echo '<h2>'.$row["env_name"].'</h2> <h6> '.$row["details"].'</h6>';
+		
 		echo '</div>';
 		
 		$count = $count + 1;
 	}
-	*/
+	
 	
 	if($count==0)
 	{
@@ -117,10 +114,12 @@ echo '<h2>Seniors</h2>';
 	while($row = mysqli_fetch_array($results))
 	{
 		$seniorname = $row['fullname'];
+		$details = $row['details'];
 		$profile = $row['profile'];
-		
+		$senior_id = $row['s_id'];
 		echo '<div class="post"><div class="row">';
-		echo '<h4>'.$seniorname.'</h4></div><br>';
+		echo '<h2>'.$seniorname.'</h2></div><h6>Senior id: '.$senior_id.'</h6><br>';
+		echo '<p><strong>Senior Details:</strong><br>'.$details.'</p><br>';
 		echo '<h6>Family Members</h6>';
 		
 		$tempcount = 0;
@@ -128,14 +127,23 @@ echo '<h2>Seniors</h2>';
 		$subresults = mysqli_query($con, $subquery);
 		while($subrow = mysqli_fetch_array($subresults))
 			{
-				$firstname = $subrow['firstname'];
-				$lastname = $subrow['lastname'];
-				$email = $subrow['email'];
-				$username = $subrow['username']; 
+				$fam_firstname = $subrow['firstname'];
+				$fam_lastname = $subrow['lastname'];
+				$fam_email = $subrow['email'];
+				$fam_username = $subrow['username']; 
 				
-				echo '<ul class="fammem"><li><strong>'.$firstname.' '.$lastname.'</strong></li>	';
-				echo '<li>Email: '.$email.'</li>';
-				echo '<li>Username: '.$username.'</li></ul>';
+				$subquery2 = "SELECT password from userlogin where username ='$fam_username'";
+				$subresults2 = mysqli_query($con, $subquery2);
+				while($subrow2 = mysqli_fetch_array($subresults2))
+					{
+						$fam_password = $subrow2['password'];
+					}
+				
+				echo '<ul class="fammem"><li><strong>'.$fam_firstname.' '.$fam_lastname.'</strong></li>	';
+				echo '<li>Email: '.$fam_email.'</li>';
+				echo '<li>Username: '.$fam_username.'</li>';
+				echo '<li>Password: '.$fam_password.'</li>';
+				echo '<li><span class="btn btn-primary">Edit</span><span class="btn btn-danger">Delete</span></li></ul>';
 				
 				$tempcount++;
 			}

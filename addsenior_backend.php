@@ -5,7 +5,7 @@
 require "userauth.php";
 
 $seniorname = $_POST["seniorname"];
-
+$details = $_POST["details"];
 
 $ip = $_SERVER['REMOTE_ADDR'];
 
@@ -14,6 +14,7 @@ $data = array(
     'user_id'    => $user_id,
     'token'       => $token,
 	'seniorname' => $seniorname,
+	'details' => $details,
 	'ip' => $ip,
     'description' => 'some description'
 );

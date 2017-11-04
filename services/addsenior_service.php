@@ -9,7 +9,9 @@ $obj = json_decode($obj, TRUE );
 $service = $obj['service'];
 $user_id = $obj['user_id'];
 $token = $obj['token'];
+
 $seniorname = $obj['seniorname'];
+$details = $obj['details'];
 $ip = $obj['ip'];
 
 $timestamp = time();
@@ -67,7 +69,7 @@ if(checkuser($user_id, $token))
 
 	$profileno = $profileno + 1;
 	
-	$query = "INSERT into seniors (user_id, profile, fullname, timestamp, flag) values ('$user_id','$profileno','$seniorname','$timestamp',1)";
+	$query = "INSERT into seniors (user_id, profile, fullname, details, timestamp, flag) values ('$user_id','$profileno','$seniorname','$details','$timestamp',1)";
 	$results = mysqli_query($con, $query);
 
 	addlog(7,$activity,$timestamp,$user_id,$profileno,$ip);

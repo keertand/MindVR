@@ -12,7 +12,10 @@
 				echo '	<a href="index.php?pagetype=home" class="col-xs-12 col-sm-4 col-md-4" ><li class="btn btn-primary">Home</li></a>
 						<a href="index.php?pagetype=environments" class="col-xs-12 col-sm-4  col-md-4" ><li class="btn btn-primary">MyEnvironments</li></a>
 						<a href="index.php?pagetype=library" class="col-xs-12 col-sm-4  col-md-4" ><li class="btn btn-primary">Library</li></a>
-						<a href="index.php?pagetype=profile" class="col-xs-12 col-sm-4  col-md-4" ><li class="btn btn-primary">Profile</li></a>';
+						';
+				if($_SESSION['usertype']>1){		
+					echo '<a href="index.php?pagetype=profile" class="col-xs-12 col-sm-4  col-md-4" ><li class="btn btn-primary">Profile</li></a>';
+				}
 				echo '<a href="index.php?pagetype=logout" class="col-xs-12 col-sm-4 col-md-4" ><li class="btn btn-danger">Logout</li></a>';
 			
 			}

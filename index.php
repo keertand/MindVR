@@ -51,7 +51,8 @@ include "header.php";
 		{
 			if(isset($_SESSION['username']))
 			{
-			include "profile.php";
+				if($_SESSION['usertype']>1)
+					include "profile.php";
 			}
 		}
 		else if($pagetype=="environments")
