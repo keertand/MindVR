@@ -63,6 +63,9 @@ $_SESSION['usertype'] = "0";
 				
 				
             </span>
+			<br>
+			<br>
+			<a style="font-size:0.6em;float:left;" href="index.php?pagetype=resetpw">forgot password?</a>
             </div>
             </div>
 		</form>

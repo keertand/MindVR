@@ -79,7 +79,11 @@ include "header.php";
 		{
 			header('Location: landing.php');	
 		}
-		
+		else if($pagetype=="resetpw")
+		{
+			
+			include "resetpw.php";
+		}
 		else
 		{
 				include "oops.php";
