@@ -11,14 +11,14 @@ include "userauth.php";
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="imgmodalname">
-			<span>No Image comment given</span>
+			<span class="modalimgcmnt">No Image comment given</span>
 		</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <img src = "images/sample.jpg" />
+        <img class="popimage" src = "images/sample.jpg" />
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -58,7 +58,7 @@ $query = "SELECT * FROM imagedb WHERE user_id='$user_id'";
 		$imgname = $row['img_name'];
 		
 		echo '
-		<div class="libimg col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3" data-toggle="modal" data-target="#picenlarge">
+		<div class="libimg col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3" data-src="'.$imglink.'" data-cmnt="'.$imgname.'" data-toggle="modal" data-target="#picenlarge">
 			<div class="postcont">
 				<img src="'.$imglink.'" alt="'.$imgname.'" />
 			</div>

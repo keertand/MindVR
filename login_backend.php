@@ -60,6 +60,7 @@ if($response[0]["status"]=="1")
 {
 	$_SESSION['username'] = $username;
 	$_SESSION['user_id'] = $response[0]["user_id"];
+	$_SESSION['handler_id'] = $response[0]["handler_id"];
 	$_SESSION['usertype'] = $response[0]["usertype"];
 	$_SESSION['token'] = $response[0]["token"];
 	

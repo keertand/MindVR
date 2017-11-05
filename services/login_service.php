@@ -52,7 +52,7 @@ function addlog($type,$activity,$timestamp,$user_id,$actual_user_id,$ip)
 {
 	require '../db.php';
 	
-	$query = "Insert into logfile (type,activity,timestamp,user_id,content_id,ip) values($type,'$activity','$timestamp',$actual_user_id,$user_id,'$ip')";
+	$query = "Insert into logfile (type,activity,timestamp,user_id,handler_id,ip) values($type,'$activity','$timestamp',$actual_user_id,$user_id,'$ip')";
 	$results = mysqli_query($con, $query);
 }
  
@@ -70,10 +70,13 @@ if($pass_actual==$password)
  {
 	 
 	 //login successfull!
+	$handler_id ="0";
+	$actual_user_id = "0";
 	
-	if($usertype==2)
+	if($usertype>=2)
 	{
-		$actual_user = $user_id;
+		$actual_user_id = $user_id;
+		$handler_id = $user_id;
 	}
 	elseif($usertype==1)
 	{
@@ -87,10 +90,11 @@ if($pass_actual==$password)
 			$actual_user_id = $row['user_id'];
 		}
 		
+		$handler_id = $user_id;
 	}
 	
 	$status = '1';
-	addlog(1,$activity,$timestamp,$user_id,$actual_user_id,$ip);
+	addlog(1,$activity,$timestamp,$handler_id,$actual_user_id,$ip);
 	updatetime($timestamp,$user_id);
 	
 	$token = gentoken(30); // some random to be generated, so it will act as an identifier.
@@ -102,12 +106,14 @@ else
 	$status = '-1';
 	$actual_user_id = '';
 	$usertype ='';
+	$handler_id = '';
 	$token = '';
 }
 
 			$result[] = array(
 							'status' => $status,
 							'user_id' => $actual_user_id,
+							'handler_id' => $user_id,
 							'usertype' => $usertype,
 							'token' => $token
 							);

@@ -5,7 +5,7 @@ require "db.php";
 
 $username = $_SESSION['username'];
 $user_id = $_SESSION['user_id'];
-
+$handler_id = $_SESSION['handler_id'];
 $comment = $_POST['imgcomment'];
 
 
@@ -13,22 +13,22 @@ $activity = "image_upload";
 $timestamp = time();
 $ip = $_SERVER['REMOTE_ADDR'];
 
- function addlog($type,$activity,$timestamp,$user_id,$ip,$image_id)
+ function addlog($type,$activity,$timestamp,$user_id,$handler_id,$ip,$image_id)
 {
 	require 'db.php';
 	
-	$query = "Insert into logfile (type,activity,timestamp,user_id,content_id,ip) values ($type,'$activity','$timestamp',$user_id,'$image_id','$ip')";
+	$query = "Insert into logfile (type,activity,timestamp,user_id,content_id,handler_id,ip) values ($type,'$activity','$timestamp',$user_id,$handler_id,'$image_id','$ip')";
 	$results = mysqli_query($con, $query);
 }
 
 
-if (!file_exists("images/user_resources/".$username))
+if (!file_exists("images/user_resources/".$user_id))
 {
-	mkdir("images/user_resources/".$username);
+	mkdir("images/user_resources/".$user_id);
 }
 
 
-$target_dir = "images/user_resources/".$username."/".$username;
+$target_dir = "images/user_resources/".$user_id."/".$user_id;
 $timestamp = Time();
 
 $target_file = $target_dir."_image_".$timestamp.".". pathinfo(basename($_FILES["fileToUpload"]["name"]),PATHINFO_EXTENSION);
@@ -71,7 +71,7 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 		
-		$query = "insert into imagedb (img_link, user_id, img_name, videoflag, uploadedon) values('$target_file','$user_id','$comment',0,'$timestamp')";
+		$query = "insert into imagedb (img_link, user_id, uploaded_by, img_name, videoflag, uploadedon) values('$target_file','$user_id','$handler_id','$comment',0,'$timestamp')";
 		$results = mysqli_query($con, $query);
 		echo $results;
 		
@@ -86,7 +86,7 @@ if ($uploadOk == 0) {
 		echo $query;
 		echo "image id: ".$image_id;
 		
-		addlog(3,$activity,$timestamp,$user_id,$ip,$image_id);
+		addlog(3,$activity,$timestamp,$user_id,$handler_id,$ip,$image_id);
 		
 		header('Location: index.php?pagetype=library');
 		

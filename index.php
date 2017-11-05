@@ -111,7 +111,6 @@ $('#myModal').on('shown.bs.modal', function () {
 })
 
 
-
 $('.actbtns .addfambtn').on('click',function(){
 			
 			var profile = $(this).attr('data-profile');
@@ -119,7 +118,46 @@ $('.actbtns .addfambtn').on('click',function(){
 			
 		});
 
+		
+$('.libimg').on('click',function(){
+			
+			var imagesrc = $(this).attr('data-src');
+			var imagecomment = $(this).attr('data-cmnt');
+			
+			$('.popimage').attr('src',imagesrc);
+			$('.modalimgcmnt').html(''+imagecomment);
+		});
 
+$('.delseniorbtn').on('click',function(){
+			
+			var seniorname = $(this).attr('data-sname');
+			var senior_id = $(this).attr('data-sid');
+			
+			$('#delsenior .sname').attr('value',seniorname);
+			$('#delsenior .sid').attr('value','senior id: '+senior_id);
+			
+			
+		});
+
+		
+
+$('.delfammembtn').on('click',function(){
+			
+			var seniorname = $(this).attr('data-sname');
+			var senior_id = $(this).attr('data-sid');
+			var fammem_name = $(this).attr('data-famname');
+			var fammem_id = $(this).attr('data-famid');
+			
+			$('#delfammem .sname').attr('value',seniorname);
+			$('#delfammem .sid').attr('value','senior id: '+senior_id);
+			$('#delfammem .fam_name').attr('value','Family Member: '+fammem_name);
+			$('#delfammem .familymember_id').attr('value',fammem_id);
+			
+			
+		});
+
+		
+				
 
 </script>
 
