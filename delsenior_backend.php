@@ -4,25 +4,18 @@
 
 require "userauth.php";
 
-$firstname = $_POST['firstname'];
-$lastname = $_POST['lastname'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$s_id = $_POST['addingto'];
+$senior_id = $_POST['senior_id'];
 
 
 $ip = $_SERVER['REMOTE_ADDR'];
 
 $data = array(
-    'service'      => 'addfamilymember',
+    'service'      => 'delsenior',
     'user_id'    => $user_id,
     'token'       => $token,
-	's_id' => $s_id,
+	'usertype'	=> $usertype,
 	'ip' => $ip,
-	'firstname' => $firstname,
-	'lastname' => $lastname,
-	'password' => $password,
-	'email' => $email,
+	'senior_id' => $senior_id,
     'description' => 'some description'
 );
 
@@ -59,7 +52,7 @@ $response = json_decode($json_response, true);
 var_dump($json_response);
 
 
-header('Location: index.php?pagetype=profile');
+//header('Location: index.php?pagetype=profile');
 
 
 

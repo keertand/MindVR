@@ -4,25 +4,21 @@
 
 require "userauth.php";
 
-$firstname = $_POST['firstname'];
-$lastname = $_POST['lastname'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$s_id = $_POST['addingto'];
+$senior_id = $_POST['senior_id'];
+$fammem_id = $_POST['familymember_id'];
 
+echo "fam is is: ".$fammem_id;
 
 $ip = $_SERVER['REMOTE_ADDR'];
 
 $data = array(
-    'service'      => 'addfamilymember',
+    'service'      => 'delfamilymember',
     'user_id'    => $user_id,
     'token'       => $token,
-	's_id' => $s_id,
+	'usertype'	=> $usertype,
 	'ip' => $ip,
-	'firstname' => $firstname,
-	'lastname' => $lastname,
-	'password' => $password,
-	'email' => $email,
+	'senior_id' => $senior_id,
+	'fammem_id' => $fammem_id,
     'description' => 'some description'
 );
 

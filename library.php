@@ -139,17 +139,17 @@ $query = "SELECT * FROM videodb WHERE user_id='$user_id'";
 <div id="addmedia" class="post">
 <h2>Add Photos/Videos to Library</h2>
 	<ul>
-	<form method="post" action="imageupload.php" enctype="multipart/form-data">
+	<form method="POST" action="imageupload.php" enctype="multipart/form-data">
 		<h3>Upload Image</h3>
 		<input class="inpfile btn btn-basic white" type="file" id="file" name="fileToUpload" placeholder="Browse Computer" required><br>
 		<input class="inptxt" type="txt" name="imgcomment" placeholder="Image name/Comment..."><br>
 		<input type="submit" class="btn btn-primary textinput_btn" value="Upload File" name="submit"/>
 	</form>
 		<i><h6>--- OR --- </h6></i>
-	<form method="post" action="uploadvideo.php" enctype="multipart/form-data">
+	<form method="POST" action="videoupload.php" enctype="multipart/form-data">
 		<h3>Upload Video</h3>
 		<input class="inpfile btn btn-basic white" type="file" id="file" name="fileToUpload" placeholder="Browse Computer" required><br>
-		<input class="inptxt" type="txt" name="videocomment" placeholder="Video name/Comment..."><br>
+		<input class="inptxt" type="txt" name="vid_comment" placeholder="Video name/Comment..."><br>
 		<input type="submit" class="btn btn-primary textinput_btn" value="Upload File" name="submit"/>
 	</form>
 	</ul>

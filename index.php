@@ -113,8 +113,8 @@ $('#myModal').on('shown.bs.modal', function () {
 
 $('.actbtns .addfambtn').on('click',function(){
 			
-			var profile = $(this).attr('data-profile');
-			$('#addingto').val(profile);
+			var s_id = $(this).attr('data-s_id');
+			$('#addingto').val(s_id);
 			
 		});
 
@@ -133,8 +133,8 @@ $('.delseniorbtn').on('click',function(){
 			var seniorname = $(this).attr('data-sname');
 			var senior_id = $(this).attr('data-sid');
 			
-			$('#delsenior .sname').attr('value',seniorname);
-			$('#delsenior .sid').attr('value','senior id: '+senior_id);
+			$('#delsenior .sname').attr('value','Senior Name: '+seniorname);
+			$('#delsenior .sid').attr('value',senior_id);
 			
 			
 		});
@@ -149,9 +149,10 @@ $('.delfammembtn').on('click',function(){
 			var fammem_id = $(this).attr('data-famid');
 			
 			$('#delfammem .sname').attr('value',seniorname);
-			$('#delfammem .sid').attr('value','senior id: '+senior_id);
+			$('#delfammem .sid').attr('value',senior_id);
 			$('#delfammem .fam_name').attr('value','Family Member: '+fammem_name);
-			$('#delfammem .familymember_id').attr('value',fammem_id);
+			$('#delfammem .fammem_id').attr('value',fammem_id);
+			
 			
 			
 		});

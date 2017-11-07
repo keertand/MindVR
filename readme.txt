@@ -14,6 +14,8 @@ type :
 7 - senior added
 8 - senior deleted
 9 - family member added
+10 - family member deleted
+
 .. more yet to be added.
 
 

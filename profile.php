@@ -49,6 +49,7 @@ include "userauth.php";
 		<form method="POST" action="delsenior_backend.php">
 			<h4>Do you really want to delete the Senior ? </h4>
 			<input type="text" class="inptxt sname" placeholder="Senior Name" name="seniorname" readonly /><br>
+			<h6>Senior ID:</h6>
 			<input type="text" class="inptxt sid" placeholder="Senior id" name="senior_id" readonly /><br>
 			<h6>Note: Deleting a senior would automatically delete associated family members.</h6>
 			<div class="row">
@@ -210,7 +211,7 @@ echo '<h2>Seniors</h2>';
 		echo '<h6>Family Members</h6>';
 		
 		$tempcount = 0;
-		$subquery = "SELECT * from userdetails where user_id in (SELECT familymember_id FROM familymembers WHERE user_id='$user_id' and profile='$profile' and flag=1)";
+		$subquery = "SELECT * from userdetails where user_id in (SELECT familymember_id FROM familymembers WHERE s_id=".$senior_id." and flag=1)";
 		$subresults = mysqli_query($con, $subquery);
 		while($subrow = mysqli_fetch_array($subresults))
 			{
@@ -241,7 +242,7 @@ echo '<h2>Seniors</h2>';
 		{
 			echo '<li>No family members added yet.</li>	';
 		}
-		echo '<div class="row actbtns"><button class="btn btn-primary addfambtn" data-toggle="modal" data-profile="'.$profile.'" data-target="#addfamilymember">Add a family member</button>';
+		echo '<div class="row actbtns"><button class="btn btn-primary addfambtn" data-toggle="modal" data-s_id="'.$senior_id.'" data-target="#addfamilymember">Add a family member</button>';
 		echo '<div class="delbtn">
 		<div class="btn btn-danger delseniorbtn" data-sid = "'.$senior_id.'" data-sname="'.$seniorname.'" data-toggle="modal" data-target="#delsenior" >
 		Delete Senior <i class="fa fa-trash" aria-hidden="true"></i></div>

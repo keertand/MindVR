@@ -16,7 +16,7 @@ $firstname = $obj['firstname'];
 $lastname = $obj['lastname'];
 $email = $obj['email'];
 $password = $obj['password'];
-$profile = $obj['profile'];
+$s_id = $obj['s_id'];
 
 $timestamp = time();
 
@@ -83,7 +83,7 @@ if(checkuser($user_id, $token))
 	$results = mysqli_query($con, $query);
 
 	
-	$query = "INSERT into familymembers(user_id,profile,familymember_id,timestamp,flag) values ($user_id,$profile,$fam_user_id,'$timestamp',1)";
+	$query = "INSERT into familymembers(user_id,s_id,familymember_id,timestamp,flag) values ($user_id,$s_id,$fam_user_id,'$timestamp',1)";
 	$results = mysqli_query($con, $query);
 
 	

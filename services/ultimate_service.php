@@ -20,25 +20,34 @@ $actual_link = implode("/",$links);
 
 if($service=="login")
 {
-	$url = $actual_link . "/login_service.php";
+	$url = $actual_link . "/microservices/login_service.php";
 	$flag = true;	
 }
 elseif($service=="signup")
 {
-	$url = $actual_link . "/signup_service.php";
+	$url = $actual_link . "/microservices/signup_service.php";
 	$flag = true;		
 }
 elseif($service=="addsenior")
 {
-	$url = $actual_link . "/addsenior_service.php";
+	$url = $actual_link . "/microservices/addsenior_service.php";
+	$flag = true;		
+}
+elseif($service=="delsenior")
+{
+	$url = $actual_link . "/microservices/delsenior_service.php";
 	$flag = true;		
 }
 elseif($service=="addfamilymember")
 {
-	$url = $actual_link . "/addfamilymember_service.php";
+	$url = $actual_link . "/microservices/addfamilymember_service.php";
 	$flag = true;		
 }
-
+elseif($service=="delfamilymember")
+{
+	$url = $actual_link . "/microservices/delfamilymember_service.php";
+	$flag = true;		
+}
 
 
 if($flag)
