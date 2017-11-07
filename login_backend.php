@@ -64,6 +64,11 @@ if($response[0]["status"]=="1")
 	$_SESSION['usertype'] = $response[0]["usertype"];
 	$_SESSION['token'] = $response[0]["token"];
 	
+	if($response[0]["s_id"]!=0)
+	{
+		$_SESSION['s_id'] = $response[0]["s_id"];
+	}
+	
 	setcookie("username", $username);
 	header('Location: index.php?pagetype=home');	
 }

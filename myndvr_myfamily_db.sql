@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2017 at 06:08 AM
+-- Generation Time: Nov 07, 2017 at 09:41 PM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.19
 
@@ -118,6 +118,7 @@ CREATE TABLE `imagedb` (
   `img_id` int(5) NOT NULL,
   `img_link` varchar(300) NOT NULL,
   `user_id` varchar(150) NOT NULL,
+  `s_id` int(11) NOT NULL,
   `uploaded_by` int(6) NOT NULL,
   `img_name` varchar(200) NOT NULL,
   `videoflag` int(1) NOT NULL,
@@ -128,11 +129,13 @@ CREATE TABLE `imagedb` (
 -- Dumping data for table `imagedb`
 --
 
-INSERT INTO `imagedb` (`img_id`, `img_link`, `user_id`, `uploaded_by`, `img_name`, `videoflag`, `uploadedon`) VALUES
-(1, 'images/user_resources/1/1_image_1509833004.jpg', '1', 0, 'Anusha picture', 0, '1509833004'),
-(2, 'images/user_resources/1/1_image_1509833254.jpg', '1', 1, 'is it too big?', 0, '1509833254'),
-(3, 'images/user_resources/1/1_image_1509840613.jpg', '1', 1, 'Chitti sneha', 0, '1509840613'),
-(4, 'images/user_resources/1/1_image_1509943872.jpg', '1', 1, '', 0, '1509943872');
+INSERT INTO `imagedb` (`img_id`, `img_link`, `user_id`, `s_id`, `uploaded_by`, `img_name`, `videoflag`, `uploadedon`) VALUES
+(1, 'images/user_resources/1/1_image_1509833004.jpg', '1', 0, 0, 'Anusha picture', 0, '1509833004'),
+(2, 'images/user_resources/1/1_image_1509833254.jpg', '1', 0, 1, 'is it too big?', 0, '1509833254'),
+(3, 'images/user_resources/1/1_image_1509840613.jpg', '1', 0, 1, 'Chitti sneha', 0, '1509840613'),
+(4, 'images/user_resources/1/1_image_1509943872.jpg', '1', 0, 1, '', 0, '1509943872'),
+(5, 'images/user_resources/1/1_image_1510089547.jpg', '1', 4, 1, 'for uncle joe', 0, '1510089547'),
+(6, 'images/user_resources/1/1_image_1510089644.JPG', '1', 4, 12, 'sneha pic', 0, '1510089644');
 
 -- --------------------------------------------------------
 
@@ -197,7 +200,12 @@ INSERT INTO `logfile` (`logid`, `type`, `activity`, `timestamp`, `user_id`, `con
 (41, 3, 'image_upload', '1509943872', 1, 1, 4, '127.0.0.1'),
 (42, 10, 'delfamilymember', '1509945491', 1, 10, 1, '127.0.0.1'),
 (43, 10, 'delfamilymember', '1510033974', 1, 11, 1, '127.0.0.1'),
-(44, 10, 'delsenior', '1510034650', 1, 5, 1, '127.0.0.1');
+(44, 10, 'delsenior', '1510034650', 1, 5, 1, '127.0.0.1'),
+(45, 1, 'login', '1510075523', 1, NULL, 1, '127.0.0.1'),
+(46, 1, 'login', '1510089093', 1, NULL, 1, '127.0.0.1'),
+(47, 3, 'image_upload', '1510089547', 1, 5, 1, '127.0.0.1'),
+(48, 1, 'login', '1510089587', 1, NULL, 12, '127.0.0.1'),
+(49, 3, 'image_upload', '1510089644', 1, 6, 12, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -276,13 +284,13 @@ CREATE TABLE `userlogin` (
 --
 
 INSERT INTO `userlogin` (`user_id`, `username`, `password`, `usertype`, `token`, `lastlogin`, `flag`) VALUES
-(1, 'admin', 'admin', 3, '#2+gr&yF3juAJ=hw58(Rl:nb%T.Z9ocd^esMXOxm', '1509833050', 0),
+(1, 'admin', 'admin', 3, '-+qBChZ.unGSsmEL1I;:Qt53*@(=k^W$K)fRdTac', '1510089093', 0),
 (2, 'hello', 'k', 2, '0', '0', 0),
 (3, 'kd', 'kd', 2, 'yx#E0@MS6(1W:&Nh8^lZ$Fd27cmpzf,vLao+sUYK', '1509089082', 0),
 (9, '1_1509816129', 'yo', 1, '-EkMwRe2Fg^3at7sK%ZfJQ+CO_4(L,on1dqGrzm)', '1509832966', 1),
 (10, '1_1509816225', 'yo', 1, '0', '0', 0),
 (11, '1_1510033876', 'naya', 1, '0', '0', 0),
-(12, '1_1510034033', 'sneha', 1, '0', '0', 1),
+(12, '1_1510034033', 'sneha', 1, 'DiStCxWn$f10=(l%P7X^dy@N36*-MkK4s,p!cQ_Y', '1510089587', 1),
 (13, '1_1510034145', 'gowtham', 1, '0', '0', 1);
 
 -- --------------------------------------------------------
@@ -295,6 +303,7 @@ CREATE TABLE `videodb` (
   `video_id` int(5) NOT NULL,
   `video_link` varchar(300) NOT NULL,
   `user_id` int(4) NOT NULL,
+  `s_id` int(11) NOT NULL,
   `uploaded_by` int(6) NOT NULL,
   `video_name` varchar(200) NOT NULL,
   `upoadedon` varchar(100) NOT NULL
@@ -389,12 +398,12 @@ ALTER TABLE `familymembers`
 -- AUTO_INCREMENT for table `imagedb`
 --
 ALTER TABLE `imagedb`
-  MODIFY `img_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `img_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `logfile`
 --
 ALTER TABLE `logfile`
-  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `logid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `seniors`
 --

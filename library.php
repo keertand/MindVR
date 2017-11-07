@@ -38,18 +38,46 @@ include "userauth.php";
 <div class="container-fluid">
 <div>
 
-<h2>Your Library</h2>
-<br>
 
-<h3>Images</h3>
-</hr>
-<div class="row imgcollection">
-<div class="row">
+
 <?php 
 
 $count = 0;
 
-$query = "SELECT * FROM imagedb WHERE user_id='$user_id'";
+	if($usertype==1)
+	{
+		$query = "SELECT * FROM imagedb WHERE user_id='$user_id' and s_id='$s_id'";
+		echo '<h2>library of Senior: '.$seniorname.'</h2>';
+	}
+	else if(isset($_GET['s_id']))
+	{
+		$temp_s_id = $_GET['s_id'];
+		
+		$query = "SELECT * FROM seniors WHERE s_id=$temp_s_id";
+		$results = mysqli_query($con, $query);
+				
+				while($row = mysqli_fetch_array($results))
+				{
+					$seniorname = $row['fullname'];
+				}
+		
+		echo '<h2>library of Senior: '.$seniorname.'</h2>';
+		
+		$query = "SELECT * FROM imagedb WHERE user_id='$user_id' and s_id='$temp_s_id'";
+	}
+	else if($usertype>=2)
+	{
+		$query = "SELECT * FROM imagedb WHERE user_id='$user_id'";
+		echo '<h2>library of All Senior</h2>';
+	}
+	?>
+	<br>
+	<h3>Images</h3>
+</hr>
+<div class="row imgcollection">
+<div class="row">
+
+<?php
 	$results = mysqli_query($con, $query);
 
 	while($row = mysqli_fetch_array($results))
@@ -143,6 +171,38 @@ $query = "SELECT * FROM videodb WHERE user_id='$user_id'";
 		<h3>Upload Image</h3>
 		<input class="inpfile btn btn-basic white" type="file" id="file" name="fileToUpload" placeholder="Browse Computer" required><br>
 		<input class="inptxt" type="txt" name="imgcomment" placeholder="Image name/Comment..."><br>
+		
+		<select name="s_id">
+			
+			
+			<?php
+			
+			if($usertype>=2)
+			{
+				// get all seniors under this user/caregiver.
+				
+				$query = "SELECT * FROM seniors WHERE user_id=$user_id";
+				$results = mysqli_query($con, $query);
+				
+				while($row = mysqli_fetch_array($results))
+				{
+					$s_id = $row['s_id'];
+					$seniorname = $row['fullname'];
+					
+					echo '<option value="'.$s_id.'">'.$seniorname.'</option>';
+				}
+							
+			}
+			else
+			{
+				echo "into here";
+				$s_id = $_SESSION['s_id'];
+				echo '<option value="'.$s_id.'">'.$seniorname.'</option>';
+			}
+			
+			?>
+		</select><br>
+		
 		<input type="submit" class="btn btn-primary textinput_btn" value="Upload File" name="submit"/>
 	</form>
 		<i><h6>--- OR --- </h6></i>
@@ -150,6 +210,37 @@ $query = "SELECT * FROM videodb WHERE user_id='$user_id'";
 		<h3>Upload Video</h3>
 		<input class="inpfile btn btn-basic white" type="file" id="file" name="fileToUpload" placeholder="Browse Computer" required><br>
 		<input class="inptxt" type="txt" name="vid_comment" placeholder="Video name/Comment..."><br>
+		
+		<select name="s_id">
+			
+			
+			<?php
+			
+			if($usertype>=2)
+			{
+				// get all seniors under this user/caregiver.
+				
+				$query = "SELECT * FROM seniors WHERE user_id=$user_id";
+				$results = mysqli_query($con, $query);
+				
+				while($row = mysqli_fetch_array($results))
+				{
+					$s_id = $row['s_id'];
+					$seniorname = $row['fullname'];
+					
+					echo '<option value="'.$s_id.'">'.$seniorname.'</option>';
+				}
+							
+			}
+			else
+			{
+				echo "into here";
+				$s_id = $_SESSION['s_id'];
+				echo '<option value="'.$s_id.'">'.$seniorname.'</option>';
+			}
+			
+			?>
+		</select><br>
 		<input type="submit" class="btn btn-primary textinput_btn" value="Upload File" name="submit"/>
 	</form>
 	</ul>

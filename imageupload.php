@@ -7,7 +7,7 @@ $username = $_SESSION['username'];
 $user_id = $_SESSION['user_id'];
 $handler_id = $_SESSION['handler_id'];
 $comment = $_POST['imgcomment'];
-
+$s_id = $_POST['s_id'];
 
 $activity = "image_upload";
 $timestamp = time();
@@ -17,7 +17,7 @@ $ip = $_SERVER['REMOTE_ADDR'];
 {
 	require 'db.php';
 	
-	$query = "Insert into logfile (type,activity,timestamp,user_id,content_id,handler_id,ip) values ($type,'$activity','$timestamp',$user_id,$handler_id,'$image_id','$ip')";
+	$query = "Insert into logfile (type,activity,timestamp,user_id,content_id,handler_id,ip) values ($type,'$activity','$timestamp',$user_id, $image_id, $handler_id,'$ip')";
 	$results = mysqli_query($con, $query);
 }
 
@@ -71,7 +71,7 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 		
-		$query = "insert into imagedb (img_link, user_id, uploaded_by, img_name, videoflag, uploadedon) values('$target_file','$user_id','$handler_id','$comment',0,'$timestamp')";
+		$query = "insert into imagedb (img_link, user_id, s_id, uploaded_by, img_name, videoflag, uploadedon) values('$target_file','$user_id','$s_id','$handler_id','$comment',0,'$timestamp')";
 		$results = mysqli_query($con, $query);
 		echo $results;
 		

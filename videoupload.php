@@ -7,7 +7,7 @@ $username = $_SESSION['username'];
 $user_id = $_SESSION['user_id'];
 $handler_id = $_SESSION['handler_id'];
 $comment = $_POST['vid_comment'];
-
+$s_id = $_POST['s_id'];
 
 $activity = "video_upload";
 $timestamp = time();

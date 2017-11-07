@@ -77,6 +77,7 @@ if($pass_actual==$password)
 	{
 		$actual_user_id = $user_id;
 		$handler_id = $user_id;
+		$s_id = 0;
 	}
 	elseif($usertype==1)
 	{
@@ -86,7 +87,7 @@ if($pass_actual==$password)
 
 		while($row = mysqli_fetch_array($results))
 		{	
-			$profile = $row['profile'];
+			$s_id = $row['s_id'];
 			$actual_user_id = $row['user_id'];
 		}
 		
@@ -108,6 +109,7 @@ else
 	$usertype ='';
 	$handler_id = '';
 	$token = '';
+	$s_id = '';
 }
 
 			$result[] = array(
@@ -115,7 +117,8 @@ else
 							'user_id' => $actual_user_id,
 							'handler_id' => $user_id,
 							'usertype' => $usertype,
-							'token' => $token
+							'token' => $token,
+							's_id' => $s_id
 							);
 							
 echo json_encode($result);
