@@ -1,7 +1,7 @@
 
 <?php
 
-include '../db.php';
+include '../../db.php';
 
 $obj = file_get_contents('php://input');
 $obj = json_decode($obj, TRUE );
@@ -30,7 +30,7 @@ function clean($str) {
 
 function checkuser($user_id, $token)
 {
-	require "../db.php";
+	require "../../db.php";
 	
 	$query = "SELECT token FROM userlogin WHERE user_id='$user_id'";
 	$results = mysqli_query($con, $query);
@@ -48,7 +48,7 @@ function checkuser($user_id, $token)
 
  function addlog($type,$activity,$timestamp,$user_id,$profileno,$ip)
 {
-	require '../db.php';
+	require '../../db.php';
 	
 	$query = "Insert into logfile (type,activity,timestamp,user_id,content_id,ip) values ($type,'$activity','$timestamp',$user_id,$profileno,'$ip')";
 	$results = mysqli_query($con, $query);

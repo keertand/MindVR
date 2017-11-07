@@ -1,7 +1,7 @@
 
 <?php
 
-include '../db.php';
+include '../../db.php';
 
 $obj = file_get_contents('php://input');
 $obj = json_decode($obj, TRUE );
@@ -30,7 +30,7 @@ function clean($str) {
 
 function checkuser($username)
 {
-	require "../db.php";
+	require "../../db.php";
 	
 	$query = "SELECT 1 FROM userlogin where username='$username'";
 	$results = mysqli_query($con, $query);
@@ -44,7 +44,7 @@ function checkuser($username)
 	
 function checkemail($email)
 {
-	require "../db.php";
+	require "../../db.php";
 
 	$query = "SELECT 1 FROM userdetails where email ='$email'";
 	$results = mysqli_query($con, $query);
@@ -58,7 +58,7 @@ function checkemail($email)
 
  function addlog($type,$activity,$timestamp,$user_id,$ip)
 {
-	require '../db.php';
+	require '../../db.php';
 	
 	$query = "Insert into logfile (type,activity,timestamp,user_id,ip) values ($type,'$activity','$timestamp',$user_id,'$ip')";
 	$results = mysqli_query($con, $query);

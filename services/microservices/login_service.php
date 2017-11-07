@@ -1,7 +1,7 @@
 
 <?php
 
-require '../db.php';
+require '../../db.php';
 
 $obj = file_get_contents('php://input');
 $obj = json_decode($obj, TRUE );
@@ -34,7 +34,7 @@ function gentoken($length)
  
 function puttoken($username, $token)
 {
-	require '../db.php';	
+	require '../../db.php';	
 	
 	$query = "Update userlogin set token = '$token' WHERE username='$username'";
 	$results = mysqli_query($con, $query);
@@ -42,7 +42,7 @@ function puttoken($username, $token)
 
 function updatetime($timestamp,$user_id)
 {
-	require '../db.php';	
+	require '../../db.php';	
 	
 	$query = "Update userlogin set lastlogin = '$timestamp' WHERE user_id='$user_id'";
 	$results = mysqli_query($con, $query);
@@ -50,7 +50,7 @@ function updatetime($timestamp,$user_id)
 
 function addlog($type,$activity,$timestamp,$user_id,$actual_user_id,$ip)
 {
-	require '../db.php';
+	require '../../db.php';
 	
 	$query = "Insert into logfile (type,activity,timestamp,user_id,handler_id,ip) values($type,'$activity','$timestamp',$actual_user_id,$user_id,'$ip')";
 	$results = mysqli_query($con, $query);

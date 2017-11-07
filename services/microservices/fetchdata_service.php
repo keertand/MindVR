@@ -1,7 +1,7 @@
 
 <?php
 
-include '../db.php';
+include '../../db.php';
 
 $obj = file_get_contents('php://input');
 $obj = json_decode($obj, TRUE );
@@ -26,7 +26,7 @@ function clean($str) {
 
 function checkuser($user_id, $token)
 {
-	require "../db.php";
+	require "../../db.php";
 	
 	$query = "SELECT token FROM userlogin WHERE user_id='$user_id'";
 	$results = mysqli_query($con, $query);
@@ -44,7 +44,7 @@ function checkuser($user_id, $token)
 
 function profileexists($user_id,$profile,$environment)
 {
-	require "../db.php";
+	require "../../db.php";
 	
 	$query = "SELECT 1 FROM ".$environment." WHERE user_id='$user_id' and profile='$profile'";
 	$results = mysqli_query($con, $query);
