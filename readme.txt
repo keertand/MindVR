@@ -54,57 +54,55 @@ you will receive this:
 Fetching data - images and video:
 ---------------------------------------------------------------------
 Example format (json):
-
 {
-    'service'      => 'fetchdata',
-    'user_id'    => '1',
-    'token'       => '=uAP06vmKHj*fTts_S3UY.hRoaJi-kxWG(d1DpbO',
-	'environment' => 'env1',
-	'profile' => '1',
-    'description' => 'related description or comment'
+  "service" : "fetchdata",
+  "user_id" : "1",
+  "token"    : "=uAP06vmKHj*fTts_S3UY.hRoaJi-kxWG(d1DpbO",
+  "environment": "env1",
+  "profile": "1",
+  "description": "related description or comment"
 }
-
 
 you will receive this: 
+Note: Here, if video does not exist, then a value 'null' is given as link.
 
 {
-	'status' => $status,
-	'user_id' => $user_id,
-	'img_count' => no of images,
-	'imgplaceholder1' => {
-						'img_link' => $imglink, 
-						'video_link' => $videolink
+	"status" : "status",
+	"user_id": "user_id",
+	"img_count": "no of images",
+	"imgplaceholder1" : {
+						"img_link" : "imglink",
+						"video_link" : "videolink"
 						},
-	'imgplaceholder2' => {
-						'img_link' => $imglink, 
-						'video_link' => $videolink
+	"imgplaceholder2" : {
+						"img_link" : "imglink", 
+						"video_link" : "videolink"
 						},					
-	'imgplaceholder3' => {
-						'img_link' => $imglink, 
-						'video_link' => $videolink
+	"imgplaceholder3" : {
+						"img_link" : "imglink", 
+						"video_link" : "videolink"
 						},
-	'imgplaceholder4' => {
-						'img_link' => $imglink, 
-						'video_link' => $videolink
+	"imgplaceholder4" : {
+						"img_link" : "imglink", 
+						"video_link" : "videolink"
 						},
-	'imgplaceholder5' => {
-						'img_link' => $imglink, 
-						'video_link' => $videolink
+	"imgplaceholder5" : {
+						"img_link" : "imglink", 
+						"video_link" : "videolink"
 						},
-	'imgplaceholder6' => {
-						'img_link' => $imglink, 
-						'video_link' => $videolink
+	"imgplaceholder6" : {
+						"img_link" : "imglink", 
+						"video_link" : "videolink"
 						},
-	'imgplaceholder7' => {
-						'img_link' => $imglink, 
-						'video_link' => $videolink
+	"imgplaceholder7" : {
+						"img_link" : "imglink", 
+						"video_link" : "videolink"
 						},
-	'imgplaceholder8' => {
-						'img_link' => $imglink, 
-						'video_link' => $videolink
-						}
+	"imgplaceholder8" : {
+						"img_link" : "imglink", 
+						"video_link" : "videolink"
+			    }
 }
 
-Note: Here, if video does not exist, then a value 'null' is given as link.
 			
 							
