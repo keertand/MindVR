@@ -44,8 +44,9 @@ you will receive this:
 
 {
 	'status' => $status,
-	'user_id' => $user_id,
+	'user_id' => $actual_user_id,
 	'usertype' => $usertype,
+	'handler_id' => $user_id,
 	'token' => $token
 }
 							
