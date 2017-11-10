@@ -52,8 +52,6 @@ var_dump($response);
 
 echo '<h1>';
 echo $json_response;
-echo $response[0]["status"];
-echo $response[0]["identifier"];
 echo '</h1>';
 
 if($response[0]["status"]=="1")
@@ -70,12 +68,12 @@ if($response[0]["status"]=="1")
 	}
 	
 	setcookie("username", $username);
-	header('Location: index.php?pagetype=home');	
+	//header('Location: index.php?pagetype=home');	
 }
 else
 {
 	echo "<h3>Login Failed! Redirecting to login again...</h3>";
-//	header('Location: index.php?pagetype=login');
+	header('Location: index.php?pagetype=login');
 }
 
 

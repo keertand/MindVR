@@ -48,6 +48,11 @@ elseif($service=="delfamilymember")
 	$url = $actual_link . "/microservices/delfamilymember_service.php";
 	$flag = true;		
 }
+elseif($service=="fetchdata")
+{
+	$url = $actual_link . "/microservices/fetchdata_service.php";
+	$flag = true;		
+}
 
 
 if($flag)

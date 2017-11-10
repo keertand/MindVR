@@ -64,9 +64,11 @@ while($row = mysqli_fetch_array($results))
 	$pass_actual = $row['password'];	
 	$usertype = $row['usertype'];
 	$user_id = $row['user_id'];
+	$token = $row['user_id'];
+	$flag = $row['flag'];
 }
 	
-if($pass_actual==$password)
+if($pass_actual==$password && $flag==1)
  {
 	 
 	 //login successfull!
@@ -98,8 +100,12 @@ if($pass_actual==$password)
 	addlog(1,$activity,$timestamp,$handler_id,$actual_user_id,$ip);
 	updatetime($timestamp,$user_id);
 	
-	$token = gentoken(30); // some random to be generated, so it will act as an identifier.
-	puttoken($username,$token);
+	if($token==0)
+	{
+		$token = gentoken(30); // some random to be generated, so it will act as an identifier.
+		puttoken($username,$token);
+	}
+ 
  }
 else
 {

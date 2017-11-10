@@ -8,7 +8,7 @@ ini_set('xdebug.var_display_max_data', 1024);
 $data = array(
     'service'      => 'login',
     'user_id'    => '1',
-    'token'       => '=uAP06vmKHj*fTts_S3UY.hRoaJi-kxWG(d1DpbO',
+    'token'       => '-+qBChZ.unGSsmEL1I;:Qt53*@(=k^W$K)fRdTac',
 	'environment' => 'env1',
 	'profile' => '1',
     'description' => 'some description'
@@ -26,7 +26,7 @@ $profile = $obj['profile'];
 
 //we can add more things like ip from which this request is coming and all.
 
-$url = $_SERVER['SERVER_NAME'] . "/MyndVR_MyFamily/MindVRMyFamily/services/fetchdata_service.php";
+$url = $_SERVER['SERVER_NAME'] . "/MindVRMyFamily/services/ultimate_service.php";
 
 echo '<h1>URL: ' . $url . '</h1>';
     
