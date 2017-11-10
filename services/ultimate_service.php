@@ -53,6 +53,11 @@ elseif($service=="fetchdata")
 	$url = $actual_link . "/microservices/fetchdata_service.php";
 	$flag = true;		
 }
+elseif($service=="delmedia")
+{
+	$url = $actual_link . "/microservices/delmedia_service.php";
+	$flag = true;		
+}
 
 
 if($flag)

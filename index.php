@@ -123,9 +123,16 @@ $('.libimg').on('click',function(){
 			
 			var imagesrc = $(this).attr('data-src');
 			var imagecomment = $(this).attr('data-cmnt');
+			var img_id = $(this).attr('data-imgid');
+			var delbtn = $(this).attr('data-delbtn');
+			
+			$('#popupmediaid').val(img_id);
 			
 			$('.popimage').attr('src',imagesrc);
 			$('.modalimgcmnt').html(''+imagecomment);
+			$('.modal-footer input').hide();
+			$('.modal-footer .'+delbtn).show();
+			
 		});
 
 $('.delseniorbtn').on('click',function(){

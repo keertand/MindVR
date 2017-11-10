@@ -60,50 +60,24 @@ Example format (json):
   "user_id" : "1",
   "token"    : "=uAP06vmKHj*fTts_S3UY.hRoaJi-kxWG(d1DpbO",
   "environment": "env1",
-  "profile": "1",
+  "s_id": "4",
   "description": "related description or comment"
 }
 
 you will receive this: 
+
+[{"status":"1",
+"user_id":"1",
+"handler_id":"1",
+"usertype":"3",
+"token":"1",
+"s_id":0}]
+
+
+
 Note: Here, if video does not exist, then a value 'null' is given as link.
 
-{
-	"status" : "status",
-	"user_id": "user_id",
-	"img_count": "no of images",
-	"imgplaceholder1" : {
-						"img_link" : "imglink",
-						"video_link" : "videolink"
-						},
-	"imgplaceholder2" : {
-						"img_link" : "imglink", 
-						"video_link" : "videolink"
-						},					
-	"imgplaceholder3" : {
-						"img_link" : "imglink", 
-						"video_link" : "videolink"
-						},
-	"imgplaceholder4" : {
-						"img_link" : "imglink", 
-						"video_link" : "videolink"
-						},
-	"imgplaceholder5" : {
-						"img_link" : "imglink", 
-						"video_link" : "videolink"
-						},
-	"imgplaceholder6" : {
-						"img_link" : "imglink", 
-						"video_link" : "videolink"
-						},
-	"imgplaceholder7" : {
-						"img_link" : "imglink", 
-						"video_link" : "videolink"
-						},
-	"imgplaceholder8" : {
-						"img_link" : "imglink", 
-						"video_link" : "videolink"
-			    }
-}
+
 
 			
 							

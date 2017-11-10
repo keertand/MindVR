@@ -64,7 +64,7 @@ while($row = mysqli_fetch_array($results))
 	$pass_actual = $row['password'];	
 	$usertype = $row['usertype'];
 	$user_id = $row['user_id'];
-	$token = $row['user_id'];
+	$token = $row['token'];
 	$flag = $row['flag'];
 }
 	
@@ -118,15 +118,17 @@ else
 	$s_id = '';
 }
 
-			$result[] = array(
-							'status' => $status,
-							'user_id' => $actual_user_id,
-							'handler_id' => $user_id,
-							'usertype' => $usertype,
-							'token' => $token,
-							's_id' => $s_id
-							);
+
+				
+			$result["status"] = $status;
+			$result["user_id"] = $actual_user_id;
+			$result["handler_id"] = $user_id;
+			$result["usertype"] = $usertype;
+			$result["token"] = $token;
+			$result["s_id"] = $s_id;
+		
+			
 							
-echo json_encode($result);
+			echo json_encode($result,  JSON_FORCE_OBJECT);
 
 ?>

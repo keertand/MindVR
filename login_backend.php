@@ -47,28 +47,30 @@ curl_close($curl);
 
 $response = json_decode($json_response, true);
 
-echo "This is response decoded: ";
-var_dump($response);
+echo "This is response: ";
+var_dump($json_response);
 
 echo '<h1>';
 echo $json_response;
 echo '</h1>';
 
-if($response[0]["status"]=="1")
+if($response["status"]=="1")
 {
 	$_SESSION['username'] = $username;
-	$_SESSION['user_id'] = $response[0]["user_id"];
-	$_SESSION['handler_id'] = $response[0]["handler_id"];
-	$_SESSION['usertype'] = $response[0]["usertype"];
-	$_SESSION['token'] = $response[0]["token"];
+	$_SESSION['user_id'] = $response["user_id"];
+	$_SESSION['handler_id'] = $response["handler_id"];
+	$_SESSION['usertype'] = $response["usertype"];
+	$_SESSION['token'] = $response["token"];
 	
-	if($response[0]["s_id"]!=0)
+	echo $response["token"];
+	
+	if($response["s_id"]!=0)
 	{
-		$_SESSION['s_id'] = $response[0]["s_id"];
+		$_SESSION['s_id'] = $response["s_id"];
 	}
 	
 	setcookie("username", $username);
-	//header('Location: index.php?pagetype=home');	
+	header('Location: index.php?pagetype=home');	
 }
 else
 {

@@ -9,6 +9,7 @@ $username = $_SESSION['username'];
 $usertype = $_SESSION['usertype'];
 $user_id = $_SESSION['user_id'];
 $token = $_SESSION['token'];
+$handler_id = $_SESSION['handler_id'];
 
 if(isset($_SESSION['s_id']))
 {

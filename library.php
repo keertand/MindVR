@@ -21,11 +21,12 @@ include "userauth.php";
         <img class="popimage" src = "images/sample.jpg" />
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
-		<button type="button" class="btn btn-danger">Delete</button>
-		<button type="button" class="btn btn-danger">Can't Delete</button>
-		
+
+        <form method="POST" action="delmedia_backend.php">
+			<input id="popupmediaid" type="hidden" name="mediaid" />
+			<input type="submit" class="btn btn-danger popupdelbtn" value="Delete">
+			<input type="button" class="btn btn-danger popupcantdelbtn" value="Can not Delete (used in environment)">
+		</form>
       </div>
     </div>
   </div>
@@ -84,9 +85,19 @@ $count = 0;
 	{
 		$imglink = $row['img_link'];
 		$imgname = $row['img_name'];
+		$img_id = $row['img_id'];
+		$currentlyused = $row['currentlyused'];
+		// find if this image is in environment
+		
+		
+		if($currentlyused==0)
+			$delbtnclass = "popupdelbtn";
+		else
+			$delbtnclass = "popupcantdelbtn";
+		
 		
 		echo '
-		<div class="libimg col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3" data-src="'.$imglink.'" data-cmnt="'.$imgname.'" data-toggle="modal" data-target="#picenlarge">
+		<div class="libimg col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3" data-imgid="'.$img_id.'" data-src="'.$imglink.'" data-cmnt="'.$imgname.'" data-delbtn="'.$delbtnclass.'" data-toggle="modal" data-target="#picenlarge">
 			<div class="postcont">
 				<img src="'.$imglink.'" alt="'.$imgname.'" />
 			</div>

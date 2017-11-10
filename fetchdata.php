@@ -1,32 +1,19 @@
-
 <?php
 
-ini_set('xdebug.var_display_max_depth', 5);
-ini_set('xdebug.var_display_max_children', 256);
-ini_set('xdebug.var_display_max_data', 1024);
-
 $data = array(
-    'service'      => 'login',
+    'service'      => 'fetchdata',
     'user_id'    => '1',
     'token'       => '-+qBChZ.unGSsmEL1I;:Qt53*@(=k^W$K)fRdTac',
 	'environment' => 'env1',
-	'profile' => '1',
+	's_id' => 4,
     'description' => 'some description'
 );
 
 
-/*
-$service = $obj['service'];
-$username = $obj['username'];
-$token = $obj['token'];
-$environment = $obj['environment'];
-$profile = $obj['profile'];
-
-*/
 
 //we can add more things like ip from which this request is coming and all.
 
-$url = $_SERVER['SERVER_NAME'] . "/MindVRMyFamily/services/ultimate_service.php";
+$url = $_SERVER['SERVER_NAME'] . "/MyndVRMyFamily/services/ultimate_service.php";
 
 echo '<h1>URL: ' . $url . '</h1>';
     
@@ -54,20 +41,12 @@ curl_close($curl);
 
 $response = json_decode($json_response, true);
 
-echo "This is response decoded: ";
-var_dump($response);
+echo "This is response: ";
+var_dump($json_response);
 
 echo json_last_error_msg();
 
-if($response[0]["status"]=="1")
-{	
-echo "<h1>Success!</h1>";	
-}
-else
-{
-	echo "<h3>Login Failed! Redirecting to login again...</h3>";
 
-}
 
 
 ?>
