@@ -24,6 +24,7 @@ include "userauth.php";
 
         <form method="POST" action="delmedia_backend.php">
 			<input id="popupmediaid" type="hidden" name="mediaid" />
+			<input type="hidden" name="mediatype" value="image" />
 			<input type="submit" class="btn btn-danger popupdelbtn" value="Delete">
 			<input type="button" class="btn btn-danger popupcantdelbtn" value="Can not Delete (used in environment)">
 		</form>
@@ -32,6 +33,36 @@ include "userauth.php";
   </div>
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="videoenlarge" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imgmodalname">
+			<span class="modalimgcmnt">No video comment given</span>
+		</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<video class="popvideo" autoplay="" loop="" poster="images/video.jpg" controls>
+			<source src="images/bgvideo.mp4" type="video/mp4">
+		</video>
+	  </div>
+      <div class="modal-footer">
+
+        <form method="POST" action="delmedia_backend.php">
+			<input id="popupmediaid" type="hidden" name="mediaid" />
+			<input type="hidden" name="mediatype" value="video" />
+			<input type="submit" class="btn btn-danger popupdelbtn" value="Delete">
+			<input type="button" class="btn btn-danger popupcantdelbtn" value="Can not Delete (used in environment)">
+		</form>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="below library">
 
 
@@ -48,7 +79,12 @@ $count = 0;
 	if($usertype==1)
 	{
 		$query = "SELECT * FROM imagedb WHERE user_id='$user_id' and s_id='$s_id'";
+		$query2 = "SELECT * FROM videodb WHERE user_id='$user_id' and s_id='$s_id'";
+		
+		
 		echo '<h2>library of Senior: '.$seniorname.'</h2>';
+		
+		
 	}
 	else if(isset($_GET['s_id']))
 	{
@@ -65,11 +101,16 @@ $count = 0;
 		echo '<h2>library of Senior: '.$seniorname.'</h2>';
 		
 		$query = "SELECT * FROM imagedb WHERE user_id='$user_id' and s_id='$temp_s_id'";
+		$query2 = "SELECT * FROM videodb WHERE user_id='$user_id' and s_id='$temp_s_id'";
+		
 	}
 	else if($usertype>=2)
 	{
 		$query = "SELECT * FROM imagedb WHERE user_id='$user_id'";
 		echo '<h2>library of All Senior</h2>';
+		
+		$query2 = "SELECT * FROM videodb WHERE user_id='$user_id'";
+		
 	}
 	?>
 	<br>
@@ -137,21 +178,30 @@ $count = 0;
 
 $count = 0;
 
-$query = "SELECT * FROM videodb WHERE user_id='$user_id'";
-	$results = mysqli_query($con, $query);
-
+	$results = mysqli_query($con, $query2);
+		
 	while($row = mysqli_fetch_array($results))
 	{
-		$videolink = $row['video_link'];
-		$videoname = $row['video_name'];
+		$video_link = $row['video_link'];
+		$video_name = $row['video_name'];
+		$video_id = $row['video_id'];
+		
+		if($row['currentlyused']==0)
+			$delbtnclass = "popupdelbtn";
+		else
+			$delbtnclass = "popupcantdelbtn";
+		
 		
 		echo '
-		<div class="libimg col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+		<div class="libvid col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-3" data-videoid="'.$video_id.'" data-src="'.$video_link.'" data-cmnt="'.$video_name.'" data-delbtn="'.$delbtnclass.'" data-toggle="modal" data-target="#videoenlarge">
 			<div class="postcont">
-				<img src="'.$videolink.'" alt="'.$videoname.'" />
+				<video style="width:100%;height:auto;" muted="" loop="" poster="images/video.jpg" id="'.$video_id.'" controls>
+				<source src="'.$video_link.'" type="video/mp4">
+				</video>
+				
 			</div>
 			<div class="comment">
-				<p>'.$videoname.'</p>
+				<p>'.$video_name.'</p>
 			</div>
 		</div>		
 		';
@@ -192,7 +242,7 @@ $query = "SELECT * FROM videodb WHERE user_id='$user_id'";
 			{
 				// get all seniors under this user/caregiver.
 				
-				$query = "SELECT * FROM seniors WHERE user_id=$user_id";
+				$query = "SELECT * FROM seniors WHERE user_id=$user_id and flag=1";
 				$results = mysqli_query($con, $query);
 				
 				while($row = mysqli_fetch_array($results))
@@ -231,7 +281,7 @@ $query = "SELECT * FROM videodb WHERE user_id='$user_id'";
 			{
 				// get all seniors under this user/caregiver.
 				
-				$query = "SELECT * FROM seniors WHERE user_id=$user_id";
+				$query = "SELECT * FROM seniors WHERE user_id=$user_id and flag=1";
 				$results = mysqli_query($con, $query);
 				
 				while($row = mysqli_fetch_array($results))

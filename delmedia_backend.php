@@ -4,7 +4,11 @@
 
 require "userauth.php";
 
-$img_id = $_POST['mediaid'];
+
+$mediatype = $_POST['mediatype'];
+$media_id = $_POST['mediaid'];
+
+
 
 $ip = $_SERVER['REMOTE_ADDR'];
 
@@ -14,7 +18,8 @@ $data = array(
 	'handler_id' => $handler_id,
     'token'       => $token,
 	'usertype'	=> $usertype,
-	'mediaid' => $img_id,
+	'mediaid' => $media_id,
+	'mediatype' => $mediatype,
 	'ip' => $ip,
     'description' => 'some description'
 );

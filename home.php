@@ -8,11 +8,20 @@ include "userauth.php";
 
 <div class="row home">
 
-
-
-	<h1>Home!!</h1>
-	<h1><?php echo $username;?></h1>
-
+	<?php 
+	
+		if($usertype>=3)
+		{
+			include "adminpage.php";
+		}
+		else
+		{
+			
+			echo '<h1>hello '.$username.'</h1>';
+		}
+	?>
+	
+	
 
 </div>
 </div>

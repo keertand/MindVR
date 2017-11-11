@@ -9,7 +9,8 @@ $obj = json_decode($obj, TRUE );
 $service = $obj['service'];
 $user_id = $obj['user_id'];
 $handler_id = $obj['handler_id'];
-$img_id = $obj['mediaid'];
+$media_id = $obj['mediaid'];
+$mediatype = $obj['mediatype'];
 $token = $obj['token'];
 $usertype = $obj['usertype'];
 $ip = $obj['ip'];
@@ -62,15 +63,33 @@ function checkuser($user_id, $token)
 	
 if(checkuser($user_id, $token) and $usertype>=2)
 {	
+	if($mediatype=="image")
+	{	
 	
-	$query = "Delete from imagedb where user_id=$user_id and img_id = ".$img_id;
+	$query = "Delete from imagedb where user_id=$user_id and img_id = ".$media_id;
 	$results = mysqli_query($con, $query);
-	
+
 	addlog(4,$activity,$timestamp,$user_id,$img_id,$handler_id,$ip);
 
 	$status = 1;
 	 
 	$description = "image deleted successfully!";
+
+	}
+	elseif($mediatype=="video")
+	{
+	$query = "Delete from videodb where user_id=$user_id and video_id = ".$media_id;
+	$results = mysqli_query($con, $query);
+
+	addlog(6,$activity,$timestamp,$user_id,$media_id,$handler_id,$ip);
+
+	$status = 1;
+	 
+	$description = "video deleted successfully!";
+		
+	}
+	
+	
 }
 else
 {

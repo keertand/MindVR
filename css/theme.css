@@ -224,7 +224,8 @@ margin:5px;
 	
 }
 
-.libimg{
+.libimg, .libvid
+{
 	height:300px;
 	display:inline-block;
 	overflow:hidden;
@@ -232,7 +233,7 @@ margin:5px;
 	
 }
 
-.libimg .postcont
+.libimg .postcont, .libvid .postcont
 {
 	width:100%;
 	height:100%;
@@ -241,18 +242,36 @@ margin:5px;
 	background-color:white;
 }
 
-.libimg .postcont img:hover
+.libimg .postcont img:hover, .libvid .postcont video:hover
 {
 	opacity:0.5;
 }
 
-.libimg .comment
+.popimage
+{
+	width:100%;
+	height:auto;
+}
+
+.popvideo
+{
+	width:100%;
+	height:auto;
+}
+
+.libimg .comment, .libvid .comment
 {
 	margin-top:-30px;
 	text-align:center;
 }
 
-.libimg img{
+.libimg .comment:hover, .libvid .comment:hover
+{
+	background-color:white;
+}
+
+.libimg img, .libvid video
+{
 	width:100%;
 }
 
@@ -290,3 +309,14 @@ margin:5px;
 	padding:20px;
 	background-color:white;
 }
+
+.statusred
+{
+	color:red;
+}
+
+.statusgreen
+{
+	color:green;
+}
+

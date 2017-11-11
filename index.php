@@ -126,15 +126,31 @@ $('.libimg').on('click',function(){
 			var img_id = $(this).attr('data-imgid');
 			var delbtn = $(this).attr('data-delbtn');
 			
-			$('#popupmediaid').val(img_id);
+			$('#picenlarge #popupmediaid').val(img_id);
 			
-			$('.popimage').attr('src',imagesrc);
-			$('.modalimgcmnt').html(''+imagecomment);
-			$('.modal-footer input').hide();
-			$('.modal-footer .'+delbtn).show();
+			$('#picenlarge .popimage').attr('src',imagesrc);
+			$('#picenlarge .modalimgcmnt').html(''+imagecomment);
+			$('#picenlarge .modal-footer input').hide();
+			$('#picenlarge .modal-footer .'+delbtn).show();
 			
 		});
 
+		
+$('.libvid').on('click',function(){
+			var videosrc = $(this).attr('data-src');
+			var videocomment = $(this).attr('data-cmnt');
+			var video_id = $(this).attr('data-videoid');
+			var delbtn = $(this).attr('data-delbtn');
+			
+			$('#videoenlarge #popupmediaid').val(video_id);
+			
+			$('#videoenlarge .popvideo').attr('src',videosrc);
+			$('#videoenlarge .modalimgcmnt').html(''+videocomment);
+			$('#videoenlarge .modal-footer input').hide();
+			$('#videoenlarge .modal-footer .'+delbtn).show();
+			
+		});
+		
 $('.delseniorbtn').on('click',function(){
 			
 			var seniorname = $(this).attr('data-sname');
