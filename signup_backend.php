@@ -32,7 +32,7 @@ $data = array(
 
 $content = json_encode($data);
 
-$url = $_SERVER['SERVER_NAME'] . "/MyndVRMyFamily/services/signup_service.php";
+$url = $_SERVER['SERVER_NAME'] . "/MyndVRMyFamily/services/ultimate_service.php";
 
 
 $curl = curl_init($url);
@@ -63,11 +63,11 @@ var_dump($json_response);
 if($response[0]["status"]=="1")
 {
 	setcookie("username", $username);
-	header('Location: index.php?pagetype=login');	
+	//header('Location: index.php?pagetype=login');	
 }
 else
 {
-	header('Location: index.php?pagetype=signup');	
+	//header('Location: index.php?pagetype=signup');	
 }
 
 ?>

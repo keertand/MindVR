@@ -21,7 +21,7 @@ echo '<h2>Your Environments</h2>';
 	{
 		$envname = $row['env_name'];
 		$tablename = $row['tablename'];
-	
+		$env_id = $row['env_id'];
 		$subquery = "SELECT * FROM ".$tablename." WHERE user_id=$user_id";
 		$subresults = mysqli_query($con, $subquery);
 
@@ -29,7 +29,7 @@ echo '<h2>Your Environments</h2>';
 		while($subrow = mysqli_fetch_array($subresults))
 		{
 			$s_id = $subrow["s_id"];
-			
+			$env_config_id = $subrow["env_config_id"];
 			$subquery2 = "SELECT fullname FROM seniors WHERE s_id='$s_id'";
 			$subresults2 = mysqli_query($con, $subquery2);
 
@@ -44,7 +44,7 @@ echo '<h2>Your Environments</h2>';
 			<h4>
 			<h6>Senior id: '.$s_id.'</h6>';
 			echo '<div class="actionbtns">
-			<div class="btn btn-primary">View</div>
+			<a href="index.php?pagetype=view&env_id='.$env_id.'&env_config_id='.$env_config_id.'" ><div class="btn btn-primary">View</div></a>
 			<div class="btn btn-primary">Edit</div>
 			<div class="btn btn-primary">Delete</div>
 			</div>';

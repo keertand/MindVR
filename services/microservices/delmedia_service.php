@@ -30,6 +30,21 @@ function clean($str) {
 	return $str;
 	}
 
+	
+	
+function auth($media_id,$mediatype,$handler_id)
+{
+	require "../../db.php";
+	
+	$query = "SELECT * from familymembers where  familymember_id = $handler_id and flag =1 and s_id in (SELECT s_id FROM imagedb WHERE img_id=$media_id)";
+	$results = mysqli_query($con, $query);
+
+	while($row = mysqli_fetch_array($results))
+	{
+		return true;	
+	}
+	return false;
+}
 
 function checkuser($user_id, $token)
 {
@@ -61,34 +76,75 @@ function checkuser($user_id, $token)
 	
 	echo $token;
 	
-if(checkuser($user_id, $token) and $usertype>=2)
+if(checkuser($handler_id, $token))
 {	
-	if($mediatype=="image")
-	{	
-	
-	$query = "Delete from imagedb where user_id=$user_id and img_id = ".$media_id;
-	$results = mysqli_query($con, $query);
 
-	addlog(4,$activity,$timestamp,$user_id,$img_id,$handler_id,$ip);
-
-	$status = 1;
-	 
-	$description = "image deleted successfully!";
-
-	}
-	elseif($mediatype=="video")
+	if($usertype>=2)
 	{
-	$query = "Delete from videodb where user_id=$user_id and video_id = ".$media_id;
-	$results = mysqli_query($con, $query);
 
-	addlog(6,$activity,$timestamp,$user_id,$media_id,$handler_id,$ip);
+		if($mediatype=="image")
+		{	
+		
+		$query = "Delete from imagedb where user_id=$user_id and img_id = ".$media_id;
+		$results = mysqli_query($con, $query);
 
-	$status = 1;
-	 
-	$description = "video deleted successfully!";
+		addlog(4,$activity,$timestamp,$user_id,$img_id,$handler_id,$ip);
+
+		$status = 1;
+		 
+		$description = "image deleted successfully!";
+
+		}
+		elseif($mediatype=="video")
+		{
+		$query = "Delete from videodb where user_id=$user_id and video_id = ".$media_id;
+		$results = mysqli_query($con, $query);
+
+		addlog(6,$activity,$timestamp,$user_id,$media_id,$handler_id,$ip);
+
+		$status = 1;
+		 
+		$description = "video deleted successfully!";
+			
+		}
+	}
+
+	else if($usertype==1 and auth($media_id,$mediatype,$handler_id))
+	{
+		
+		
+		if($mediatype=="image")
+		{	
+	
+		$query = "Delete from imagedb where user_id=$user_id and img_id = ".$media_id;
+		$results = mysqli_query($con, $query);
+
+		addlog(4,$activity,$timestamp,$user_id,$img_id,$handler_id,$ip);
+
+		$status = 1;
+		 
+		$description = "image deleted successfully!";
+
+		}
+		elseif($mediatype=="video")
+		{
+		$query = "Delete from videodb where user_id=$user_id and video_id = ".$media_id;
+		$results = mysqli_query($con, $query);
+
+		addlog(6,$activity,$timestamp,$user_id,$media_id,$handler_id,$ip);
+
+		$status = 1;
+		 
+		$description = "video deleted successfully!";
+			
+		}
 		
 	}
-	
+	else
+	{
+		$status = -1;
+		$description = "family member authentication Failure!";
+	}
 	
 }
 else

@@ -85,6 +85,20 @@ include "header.php";
 			
 			include "resetpw.php";
 		}
+		else if($pagetype=="view")
+		{
+			if(isset($_GET['env_id']) && isset($_GET['env_config_id']))
+			{
+				$env_id = $_GET['env_id'];
+				$env_config_id = $_GET['env_config_id'];
+				
+				include "view.php";	
+			}
+			else
+			{
+				include "environments.php";
+			}
+		}
 		else
 		{
 				include "oops.php";

@@ -1,28 +1,13 @@
-
-<?php session_start();?>
 <?php
 
-require "userauth.php";
-
-
-$mediatype = $_POST['mediatype'];
-$media_id = $_POST['mediaid'];
-
-
-
-$ip = $_SERVER['REMOTE_ADDR'];
-
 $data = array(
-    'service'      => 'delmedia',
-    'user_id'    => $user_id,
-	'handler_id' => $handler_id,
-    'token'       => $token,
-	'usertype'	=> $usertype,
-	'mediaid' => $media_id,
-	'mediatype' => $mediatype,
-	'ip' => $ip,
+    'service'      => 'getseniors',
+    'user_id'    => '1',
+    'token'       => 'cLX4%pTmUxe@Y_wPBo.+*!vkj85N-CbDEAFIyhq7',
     'description' => 'some description'
 );
+
+
 
 //we can add more things like ip from which this request is coming and all.
 
@@ -54,10 +39,11 @@ curl_close($curl);
 
 $response = json_decode($json_response, true);
 
+echo "This is response: ";
 var_dump($json_response);
 
+echo json_last_error_msg();
 
-//header('Location: index.php?pagetype=library');
 
 
 

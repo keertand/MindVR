@@ -320,3 +320,27 @@ margin:5px;
 	color:green;
 }
 
+
+.env_side
+{
+	width:100%;
+	height:auto;
+	padding:50px;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.env_side .placeholder
+{
+	height:80px;
+	width:auto;	
+	overflow:hidden;
+}
+
+.env_side .placeholder img
+{
+	height:100%;
+	width:auto;
+	
+}
+

@@ -58,7 +58,21 @@ elseif($service=="delmedia")
 	$url = $actual_link . "/microservices/delmedia_service.php";
 	$flag = true;		
 }
-
+elseif($service=="disableuser")
+{
+	$url = $actual_link . "/microservices/disableuser_service.php";
+	$flag = true;		
+}
+elseif($service=="enableuser")
+{
+	$url = $actual_link . "/microservices/enableuser_service.php";
+	$flag = true;		
+}
+elseif($service=="getseniors")
+{
+	$url = $actual_link . "/microservices/getseniors_service.php";
+	$flag = true;		
+}
 
 if($flag)
 {
