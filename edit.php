@@ -57,13 +57,9 @@ include "userauth.php";
 			
 			echo '<h2>Senior: '.$current_sname.'</h2><hr>';
 			if($flag==0)
-				echo '<div class="btn btn-info">Environment awaiting validation from Caregiver</div>';
-			else if($flag==1)
+				echo '<div class="btn btn-danger">Environment awaiting validation from Caregiver</div>';
+			else
 				echo '<div class="btn btn-success">Environment validated by Caregiver</div>';
-			else if($flag==-1)
-			{
-				echo '<div class="btn btn-danger">Environment Rejected. Please do the neccesary changes and resubmit.</div>';
-			}
 		
 			$imgarray = [];
 			$videoarray = [];
@@ -99,13 +95,12 @@ include "userauth.php";
 						$connection = "0";	
 					}
 					
-					
 					array_push($imgarray,$link);
 					array_push($videoarray,$connection);
 				}
 				else
 				{
-					$link = "images/default.jpg";
+					$link = "0";
 					$connection = "0";	
 					
 					
@@ -140,7 +135,7 @@ include "userauth.php";
 		
 		function get_place($i, $imgarray, $availableimgids, $availableimglinks)
 		{
-			if($imgarray[$i-1]!='null')
+			if($imgarray[$i-1]!='0')
 			{
 				echo '<div class="placeholder"><img src="'.$imgarray[$i-1].'" /></div>';	
 			}
@@ -161,7 +156,6 @@ include "userauth.php";
 				echo '</select>	';
 			}
 		}
-		
 		
 		
 		

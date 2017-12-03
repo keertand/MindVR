@@ -99,6 +99,20 @@ include "header.php";
 				include "environments.php";
 			}
 		}
+		else if($pagetype=="edit")
+		{
+			if(isset($_GET['env_id']) && isset($_GET['env_config_id']))
+			{
+				$env_id = $_GET['env_id'];
+				$env_config_id = $_GET['env_config_id'];
+				
+				include "edit.php";
+			}
+			else
+			{
+				include "environments.php";
+			}
+		}
 		else
 		{
 				include "oops.php";
@@ -214,6 +228,7 @@ $('.delenvbtn').on('click',function(){
 			
 		});
 		
+
 		
 				
 

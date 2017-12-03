@@ -79,7 +79,7 @@ if(checkuser($user_id, $token))
 	echo $results;
 	
 	
-	addlog(12,$activity,$timestamp,$user_id,$env_config_id,$handler_id,$ip);
+	addlog(13,$activity,$timestamp,$user_id,$env_config_id,$handler_id,$ip);
 
 	$status = 1;
 	$description = "Environment deleted successfully!";

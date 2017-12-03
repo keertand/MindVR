@@ -83,7 +83,26 @@ elseif($service=="deleteenv")
 	$url = $actual_link . "/microservices/deleteenv_service.php";
 	$flag = true;		
 }
-
+elseif($service=="approveuser")
+{
+	$url = $actual_link . "/microservices/approveuser_service.php";
+	$flag = true;		
+}
+elseif($service=="disapproveuser")
+{
+	$url = $actual_link . "/microservices/disapproveuser_service.php";
+	$flag = true;		
+}
+elseif($service=="envapprove")
+{
+	$url = $actual_link . "/microservices/envapprove_service.php";
+	$flag = true;		
+}
+elseif($service=="envdisapprove")
+{
+	$url = $actual_link . "/microservices/envdisapprove_service.php";
+	$flag = true;		
+}
 
 if($flag)
 {

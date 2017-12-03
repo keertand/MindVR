@@ -101,17 +101,18 @@ include "userauth.php";
 					
 					<h6>Environment ID</h6>
 					<input type="text" class="inptxt env_config_id" placeholder="Senior id" name="env_config_id" readonly /><br>
-					<input type="text" class="inptxt env_id" placeholder="Senior id" name="env_id" hidden readonly /><br>
-					
+					<input type="text" class="inptxt env_id" placeholder="Senior id" name="env_id" hidden readonly />
+					<br>
 					<h6>Environment Name:</h6>
 					<input type="text" class="inptxt envname" placeholder="Senior id" name="environmentname" value="" readonly /><br>
+					<br>
 					<h6>Senior ID</h6>
 					<input type="text" class="inptxt s_id" placeholder="Senior id" name="s_id" value="" readonly /><br>
-
+					<br>
 					<h6>Senior Name</h6>
 					<input type="text" class="inptxt seniorname" placeholder="Senior id" name="senior_Name" value="" readonly /><br>
 					<br>
-					
+					<br>
 					<h6>Note: Deleting an environment will not delete the pictures associated with it.</h6>
 					
 					<div class="row">
@@ -133,7 +134,6 @@ include "userauth.php";
 
 <?php
 
-$envname = "The Living Room";
 $count = 0;
 
 echo '<h2>Your Environments</h2>';
@@ -169,14 +169,13 @@ echo '<h2>Your Environments</h2>';
 			<h6>Senior id: '.$s_id.'</h6>';
 			echo '<div class="actionbtns">
 			<a href="index.php?pagetype=view&env_id='.$env_id.'&env_config_id='.$env_config_id.'" ><div class="btn btn-primary">View</div></a>
-			<div class="btn btn-primary">Edit</div>
+			<a href="index.php?pagetype=edit&env_id='.$env_id.'&env_config_id='.$env_config_id.'" ><div class="btn btn-primary">Edit</div></a>
 			<div class="btn btn-danger delenvbtn" data-toggle="modal" data-target="#delenv" data-envconfigid="'.$env_config_id.'" data-envname="'.$envname.'" data-envid="'.$env_id.'" data-sname="'.$seniorname.'" data-sid="'.$s_id.'">Delete</div>
 			</div>';
 			echo '</div>';
 			
 			$count = $count + 1;
 		}
-	
 	}
 	
 	

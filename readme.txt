@@ -16,7 +16,12 @@ type :
 9 - family member added
 10 - family member deleted
 11 - Environment created
-12 - Environment deleted
+12 - Environment updated
+13 - Environment deleted
+14 - approve user
+15 - disable user
+16 - Environment approved
+17 - Environment Disapprove
 
 .. more yet to be added.
 

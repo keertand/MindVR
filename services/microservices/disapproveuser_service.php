@@ -7,13 +7,11 @@ $obj = file_get_contents('php://input');
 $obj = json_decode($obj, TRUE );
 
 $service = $obj['service'];
-$env_id = $obj['env_id'];
-$usertype = $obj['usertype'];
+$current_user_id = $obj['current_user_id'];
 $user_id = $obj['user_id'];
 $token = $obj['token'];
 $handler_id = $obj['handler_id'];
 
-$s_id = $obj['s_id'];
 
 $ip = $obj['ip'];
 
@@ -60,41 +58,17 @@ function checkuser($user_id, $token)
 
 if(checkuser($user_id, $token))
 {	
-	$profileno = 1;
-	$envtable = '';
-
-	$query = "select tablename from environments where env_id = '$env_id'";
-	$results = mysqli_query($con, $query);
-
-	while($row = mysqli_fetch_array($results))
-	{
-		$envtable = $row['tablename'];
-	}
-
-	if($usertype>=2)
-		$flag = 1;
-	else
-		$flag = 0;
-		
-	$query = "INSERT into $envtable (user_id, s_id, flag, timestamp) values ($user_id,$s_id,$flag,'$timestamp')";
+	
+	$query = "update userlogin set flag = 0 where user_id = $current_user_id";
 	$results = mysqli_query($con, $query);
 
 	echo $query;
 	echo $results;
 	
-	
-	$query = "select env_config_id from $envtable where user_id = $user_id and s_id=$s_id and timestamp = $timestamp";
-	$results = mysqli_query($con, $query);
-
-	while($row = mysqli_fetch_array($results))
-	{
-		$envconfigid = $row['env_config_id'];
-	}
-	
-	addlog(11,$activity,$timestamp,$user_id,$envconfigid,$handler_id,$ip);
+	addlog(15,$activity,$timestamp,$user_id,$current_user_id,$handler_id,$ip);
 
 	$status = 1;
-	$description = "Environment created successfully!";
+	$description = "approved successfully!";
 }
 else
 {
@@ -106,11 +80,7 @@ else
 							'status' => $status,
 							'description' => $description
 							
-							
 							);
-	
-
-			
 							
 echo json_encode($result,  JSON_FORCE_OBJECT);
 

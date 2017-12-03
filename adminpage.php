@@ -74,15 +74,15 @@
 		if($dis_usertype<3)
 		{
 		if($flag==0)
-			echo '<td><button class="btn btn-success">Approve</button></td>';
+			echo '<td><a href="approve_backend.php?flag1='.$dis_user_id.'"><button data-id="'.$dis_user_id.'" class="btn btn-success adminapprove">Approve</button></a></td>';
 		else
-			echo '<td><button class="btn btn-danger">Disable</button></td>';
+			echo '<td><a href="disapprove_backend.php?flag1='.$dis_user_id.'"><button data-id="'.$dis_user_id.'" class="btn btn-danger admindisable">Disable</button></a></td>';
 		}
 		else
 		{
 			echo '<td><button class="btn btn-primary">Admin User</button></td>';
 		}
-	  echo '</tr>';
+		echo '</tr>';
 	  
 		}
 		

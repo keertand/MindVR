@@ -4,22 +4,22 @@
 
 require "userauth.php";
 
-$s_id = $_POST["s_id"];
-$env_id = $_POST["env"];
+$env_id = $_GET['env_id'];
+$env_config_id = $_GET['env_config_id'];
+
 
 
 $ip = $_SERVER['REMOTE_ADDR'];
 
 $data = array(
-    'service'      => 'createenv',
+    'service'      => 'envapprove',
     'user_id'    => $user_id,
-    'token'       => $token,
-	's_id' => $s_id,
-	'handler_id' => $handler_id,
-	'usertype' => $usertype,
 	'env_id' => $env_id,
+	'env_config_id' => $env_config_id,
+    'token'       => $token,
+	'handler_id' => $handler_id,
 	'ip' => $ip,
-    'description' => 'Create Environment'
+    'description' => 'Approve environment'
 );
 
 //we can add more things like ip from which this request is coming and all.
@@ -55,7 +55,7 @@ $response = json_decode($json_response, true);
 var_dump($json_response);
 
 echo $response;
-header('Location: index.php?pagetype=environments');
+header('Location: index.php?pagetype=home');
 
 
 
