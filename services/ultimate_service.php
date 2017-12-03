@@ -73,6 +73,17 @@ elseif($service=="getseniors")
 	$url = $actual_link . "/microservices/getseniors_service.php";
 	$flag = true;		
 }
+elseif($service=="createenv")
+{
+	$url = $actual_link . "/microservices/createenv_service.php";
+	$flag = true;		
+}
+elseif($service=="deleteenv")
+{
+	$url = $actual_link . "/microservices/deleteenv_service.php";
+	$flag = true;		
+}
+
 
 if($flag)
 {

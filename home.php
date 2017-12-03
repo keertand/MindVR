@@ -13,12 +13,20 @@ include "userauth.php";
 		if($usertype>=3)
 		{
 			include "adminpage.php";
-		}
-		else
-		{
+			include "caregiverpage.php";
 			
+		}
+		else if($usertype==2)
+		{
+			include "caregiverpage.php";
 			echo '<h1>hello '.$username.'</h1>';
 		}
+		else
+		{	
+			echo '<h1>hello '.$username.'</h1>';
+		}
+		
+		
 	?>
 	
 	

@@ -15,6 +15,8 @@ type :
 8 - senior deleted
 9 - family member added
 10 - family member deleted
+11 - Environment created
+12 - Environment deleted
 
 .. more yet to be added.
 

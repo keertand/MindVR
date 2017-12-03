@@ -193,7 +193,27 @@ $('.delfammembtn').on('click',function(){
 			
 			
 		});
+		
+		
 
+$('.delenvbtn').on('click',function(){
+			
+			
+			var seniorname = $(this).attr('data-sname');
+			var s_id = $(this).attr('data-sid');
+			var envname = $(this).attr('data-envname');
+			var env_id = $(this).attr('data-envid');
+			var env_config_id = $(this).attr('data-envconfigid');
+			
+			
+			$('#delenv .envname').attr('value',envname);
+			$('#delenv .env_id').attr('value',env_id);
+			$('#delenv .env_config_id').attr('value',env_config_id);
+			$('#delenv .s_id').attr('value',s_id);
+			$('#delenv .seniorname').attr('value',seniorname);
+			
+		});
+		
 		
 				
 

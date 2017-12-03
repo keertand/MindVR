@@ -113,10 +113,14 @@ include "userauth.php";
 			{
 				echo '<select id="placeholder_'.$i.'" class="placeholder">';
 				
+				echo '<option><img src="hello.png"/></option>';
+				
+				var_dump($availableimglinks);
+				
 				$optioncount = 0;
-				foreach($option as $availableimglinks)
+				foreach($availableimglinks as $option)
 				{
-					echo '<option value="'.$availableimgids[$optioncount].'"><img src="'.$option.'"/></option>';
+					echo '<option value="'.$availableimgids[$optioncount].'"><div>yoyo<img src="yoyo.png" alt="img_values" ></div></option>';
 					$optioncount = $optioncount + 1;
 				}
 				
