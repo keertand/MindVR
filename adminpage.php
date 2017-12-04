@@ -1,9 +1,10 @@
 	<div class="col">
 
+	<h2>Admin Panel</h2><hr>
+	
 
 	<h1>Hello
 	<?php echo ': '.$username;?></h1><br>
-	<h2>User Type: 3 - Admin all rights given.</h2><hr>
 	
 	<div class="row">
 		<h4>Existing caregivers and their data</h4>

@@ -232,35 +232,57 @@ $count = 0;
 		<h3>Upload Image</h3>
 		<input class="inpfile btn btn-basic white" type="file" id="file" name="fileToUpload" placeholder="Browse Computer" required><br>
 		<input class="inptxt" type="txt" name="imgcomment" placeholder="Image name/Comment..."><br>
-		
-		<select name="s_id">
-			
+		&nbsp Upload to Senior Account: 
+		<select name="s_id" style="padding:5px;">
 			
 			<?php
-			
-			if($usertype>=2)
+			if(!isset($_GET['s_id']))
 			{
-				// get all seniors under this user/caregiver.
-				
-				$query = "SELECT * FROM seniors WHERE user_id=$user_id and flag=1";
-				$results = mysqli_query($con, $query);
-				
-				while($row = mysqli_fetch_array($results))
+				if($usertype>=2)
 				{
-					$s_id = $row['s_id'];
-					$seniorname = $row['fullname'];
+					// get all seniors under this user/caregiver.
+					
+					$query = "SELECT * FROM seniors WHERE user_id=$user_id and flag=1";
+					$results = mysqli_query($con, $query);
+					
+					while($row = mysqli_fetch_array($results))
+					{
+						$s_id = $row['s_id'];
+						$seniorname = $row['fullname'];
+						
+						echo '<option value="'.$s_id.'">'.$seniorname.'</option>';
+					}
+								
+				}
+				else
+				{
+					$s_id = $_SESSION['s_id'];
+					
+					$query = "SELECT * FROM seniors WHERE user_id=$user_id and s_id=$s_id and flag=1";
+					$results = mysqli_query($con, $query);
+					
+					while($row = mysqli_fetch_array($results))
+					{
+						$seniorname = $row['fullname'];
+					}
 					
 					echo '<option value="'.$s_id.'">'.$seniorname.'</option>';
 				}
-							
 			}
 			else
 			{
-				echo "into here";
-				$s_id = $_SESSION['s_id'];
+				$s_id = $_GET['s_id'];
+				
+				$query = "SELECT * FROM seniors WHERE user_id=$user_id and s_id=$s_id and flag=1";
+				$results = mysqli_query($con, $query);
+					
+				while($row = mysqli_fetch_array($results))
+				{
+					$seniorname = $row['fullname'];
+				}
+				
 				echo '<option value="'.$s_id.'">'.$seniorname.'</option>';
 			}
-			
 			?>
 		</select><br>
 		
@@ -272,34 +294,56 @@ $count = 0;
 		<input class="inpfile btn btn-basic white" type="file" id="file" name="fileToUpload" placeholder="Browse Computer" required><br>
 		<input class="inptxt" type="txt" name="vid_comment" placeholder="Video name/Comment..."><br>
 		
-		<select name="s_id">
-			
-			
+		&nbsp Upload to Senior Account: 
+		<select name="s_id" style="padding:5px;">	
 			<?php
-			
-			if($usertype>=2)
+			if(!isset($_GET['s_id']))
 			{
-				// get all seniors under this user/caregiver.
-				
-				$query = "SELECT * FROM seniors WHERE user_id=$user_id and flag=1";
-				$results = mysqli_query($con, $query);
-				
-				while($row = mysqli_fetch_array($results))
+				if($usertype>=2)
 				{
-					$s_id = $row['s_id'];
-					$seniorname = $row['fullname'];
+					// get all seniors under this user/caregiver.
+					
+					$query = "SELECT * FROM seniors WHERE user_id=$user_id and flag=1";
+					$results = mysqli_query($con, $query);
+					
+					while($row = mysqli_fetch_array($results))
+					{
+						$s_id = $row['s_id'];
+						$seniorname = $row['fullname'];
+						
+						echo '<option value="'.$s_id.'">'.$seniorname.'</option>';
+					}
+								
+				}
+				else
+				{
+					$s_id = $_SESSION['s_id'];
+					
+					$query = "SELECT * FROM seniors WHERE user_id=$user_id and s_id=$s_id and flag=1";
+					$results = mysqli_query($con, $query);
+					
+					while($row = mysqli_fetch_array($results))
+					{
+						$seniorname = $row['fullname'];
+					}
 					
 					echo '<option value="'.$s_id.'">'.$seniorname.'</option>';
 				}
-							
 			}
 			else
 			{
-				echo "into here";
-				$s_id = $_SESSION['s_id'];
+				$s_id = $_GET['s_id'];
+				
+				$query = "SELECT * FROM seniors WHERE user_id=$user_id and s_id=$s_id and flag=1";
+				$results = mysqli_query($con, $query);
+					
+				while($row = mysqli_fetch_array($results))
+				{
+					$seniorname = $row['fullname'];
+				}
+				
 				echo '<option value="'.$s_id.'">'.$seniorname.'</option>';
 			}
-			
 			?>
 		</select><br>
 		<input type="submit" class="btn btn-primary textinput_btn" value="Upload File" name="submit"/>

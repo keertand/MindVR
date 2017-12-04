@@ -88,11 +88,11 @@ include "userauth.php";
 						$link = $subrow2['img_link'];
 					}
 					
-					$subquery2 = "SELECT * FROM connectedmedia WHERE img_id=$temp_imgid";
+					$subquery2 = "SELECT * FROM connectedmedia WHERE env_id=$env_id and env_config_id=$env_config_id and img_placeholder=$i";
 					$subresults2 = mysqli_query($con, $subquery2);
 					while($subrow2 = mysqli_fetch_array($subresults2))
 					{
-						$connection = $subrow2['video_link'];
+						$connection = $subrow2['video_id'];
 						$temp_count = 1;		
 					}
 					
@@ -144,24 +144,9 @@ include "userauth.php";
 		{
 			if($imgarray[$i-1]!='null')
 			{
-				echo '<div class="placeholder"><img src="'.$imgarray[$i-1].'" /></div>';	
+				echo '<div class="viewholder"><div><div class="imgholder"><img src="'.$imgarray[$i-1].'" /></div></div></div>';	
 			}
 			
-			else
-			{
-				echo '<select id="placeholder_'.$i.'" class="placeholder">';
-				
-				echo '<option><img src="hello.png"/></option>';
-				
-				$optioncount = 0;
-				foreach($availableimglinks as $option)
-				{
-					echo '<option value="'.$availableimgids[$optioncount].'"><div>yoyo<img src="yoyo.png" alt="img_values" ></div></option>';
-					$optioncount = $optioncount + 1;
-				}
-				
-				echo '</select>	';
-			}
 		}
 		
 		

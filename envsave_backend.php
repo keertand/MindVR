@@ -31,6 +31,11 @@ for($i=1;$i<=$img_no;$i++)
 	$data['placeholder_'.$i] = $_POST['placeholder_'.$i];
 }
 
+for($i=1;$i<=$img_no;$i++)
+{
+	$data['placeholder_vid_'.$i] = $_POST['placeholder_vid_'.$i];
+}
+
 var_dump($data);
 
 

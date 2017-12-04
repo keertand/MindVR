@@ -332,24 +332,38 @@ margin:5px;
 
 .env_side .placeholder
 {
-	height:300px;
+	height:380px;
 	width:220;
 	padding:20px;	
-	overflow:hidden;
-	
+	overflow:hidden;	
 }
 
-.env_side .placeholder span
+.env_side .viewholder
+{
+	height:300px;
+	width:300;
+	padding:20px;	
+	overflow:hidden;		
+}
+
+.env_side .placeholder span,.env_side .viewholder span
 {
 	height:20px;
 	text-align:center;
 	color:black;
 }
 	
-.env_side .placeholder >div
+.env_side .placeholder >div,.env_side .viewholder >div
 {
 	background:white;
 	border: 10px groove black;
+}
+
+ .env_side .viewholder .imgholder
+{
+	width:100%;
+	height:auto;
+	overflow:hidden;	 
 }
 
 .env_side .placeholder .imgholder
@@ -359,7 +373,7 @@ margin:5px;
 	overflow:hidden;
 }
 
-.env_side .placeholder .imgholder img
+.env_side .placeholder .imgholder img, .env_side .viewholder .imgholder img
 {
 	width:100%;
 	height:auto;

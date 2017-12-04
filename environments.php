@@ -157,6 +157,7 @@ else
 		{
 			if(isset($_GET['s_id']) && isset($_GET['sname']))
 			{
+				$s_id = $_GET['s_id'];
 				$sname = $_GET['sname'];
 				$subquery = "SELECT * FROM ".$tablename." WHERE user_id=$user_id and s_id= $s_id and not flag =-2";
 			}

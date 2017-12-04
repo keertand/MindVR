@@ -17,11 +17,17 @@ $img_no = $obj['img_no'];
 
 $imgarray = [];
 
+$videoarray = [];
+
 for($i=1;$i<=$img_no;$i++)
 {
 	array_push($imgarray,$obj['placeholder_'.$i]);
 }
 
+for($i=1;$i<=$img_no;$i++)
+{
+	array_push($videoarray,$obj['placeholder_vid_'.$i]);
+}
 
 
 $ip = $obj['ip'];
@@ -113,6 +119,23 @@ if(checkuser($handler_id, $token))
 	$query = "update imagedb set currentlyused = currentlyused + 1 where img_id in (".$imgstring.")";
 	$results = mysqli_query($con, $query);
 
+	
+	
+	// update connected media
+		
+	$query = "delete from connectedmedia where env_id=$env_id and env_config_id=$env_config_id";
+	$results = mysqli_query($con, $query);
+	
+	for($i=1;$i<=$img_no;$i++)
+	{
+		$vid_id = $videoarray[$i-1];
+		if($vid_id!=0)
+		{	
+			$query = "insert into connectedmedia (env_id,env_config_id,img_placeholder,video_id) values($env_id,$env_config_id,$i,$vid_id)";
+			$results = mysqli_query($con, $query);
+		}
+	}
+	
 	
 	addlog(12,$activity,$timestamp,$user_id,$env_config_id,$handler_id,$ip);
 

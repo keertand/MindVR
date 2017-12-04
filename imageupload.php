@@ -88,7 +88,7 @@ if ($uploadOk == 0) {
 		
 		addlog(3,$activity,$timestamp,$user_id,$handler_id,$ip,$image_id);
 		
-		header('Location: index.php?pagetype=library');
+		header('Location: index.php?pagetype=library&s_id='.$s_id);
 		
     } else {
         echo "Sorry, there was an error uploading your file.";
