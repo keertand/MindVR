@@ -207,10 +207,10 @@ else
 			
 			echo '<div class="actionbtns">
 			<a href="index.php?pagetype=view&env_id='.$env_id.'&env_config_id='.$env_config_id.'" ><div class="btn btn-primary">View</div></a>
-			<a href="index.php?pagetype=edit&env_id='.$env_id.'&env_config_id='.$env_config_id.'" ><div class="btn btn-primary">Edit</div></a>
+			<a href="index.php?pagetype=edit&env_id='.$env_id.'&env_config_id='.$env_config_id.'" ><div class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i>&nbspEdit</div></a>
 			<div class="btn btn-danger delenvbtn" data-toggle="modal" data-target="#delenv" data-envconfigid="'.$env_config_id.'" data-envname="'.$envname.'" data-envid="'.$env_id.'" data-sname="'.$seniorname.'" data-sid="'.$s_id.'">Delete</div>
 			</div>';
-			echo '<br><i>Updated on: '.date('m/d/Y H:i:s', $dis_timestamp).'</i></div>';
+			echo '<br><i>Updated on: '.date('m/d/Y H:i', $dis_timestamp).'</i></div>';
 			
 			$count = $count + 1;
 		}

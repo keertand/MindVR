@@ -85,7 +85,7 @@
 					echo '<td>'.$dis_seniorname.'</td>
 					<td>'.$dis_s_id.'</td>
 					<td>'.$dis_handler_name.'</td>
-					<td>'.$dis_timestamp.'</td>
+					<td>'.date('m/d/Y H:i:s', $dis_timestamp).'</td>
 					<td><a href="'.$dis_env_link.'">View</a></td>';
 					
 					

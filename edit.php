@@ -82,7 +82,7 @@ include "userauth.php";
 					$subresults2 = mysqli_query($con, $subquery2);
 					while($subrow2 = mysqli_fetch_array($subresults2))
 					{
-						$connection = $subrow2['video_link'];
+						$connection = $subrow2['video_id'];
 						$temp_count = 1;		
 					}
 					
@@ -273,7 +273,7 @@ include "userauth.php";
 		echo '</div>';
 		
 		
-		echo '<input type="submit" class="btn btn-primary" value="Save Environment">';
+		echo '<input type="submit" class="btn btn-primary" value="Save Environment and view">';
 		echo '</form>';
 		
 	?>
