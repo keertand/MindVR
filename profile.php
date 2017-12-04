@@ -242,7 +242,9 @@ echo '<h2>Seniors</h2>';
 		{
 			echo '<li>No family members added yet.</li>	';
 		}
-		echo '<div class="row actbtns"><a href="index.php?pagetype=library&s_id='.$senior_id.'"><button class="btn btn-primary">View Library</button></a><button class="btn btn-primary addfambtn" data-toggle="modal" data-s_id="'.$senior_id.'" data-target="#addfamilymember">Add a family member</button>';
+		echo '<div class="row actbtns">
+		<a href="index.php?pagetype=environments&s_id='.$senior_id.'&sname='.$seniorname.'"><button class="btn btn-primary">View Environments</button></a>
+		<a href="index.php?pagetype=library&s_id='.$senior_id.'"><button class="btn btn-primary">View Library</button></a><button class="btn btn-primary addfambtn" data-toggle="modal" data-s_id="'.$senior_id.'" data-target="#addfamilymember">Add a family member</button>';
 		echo '<div class="delbtn">
 		<div class="btn btn-danger delseniorbtn" data-sid = "'.$senior_id.'" data-sname="'.$seniorname.'" data-toggle="modal" data-target="#delsenior" >
 		Delete Senior <i class="fa fa-trash" aria-hidden="true"></i></div>

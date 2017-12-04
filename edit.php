@@ -56,11 +56,7 @@ include "userauth.php";
 			}
 			
 			echo '<h2>Senior: '.$current_sname.'</h2><hr>';
-			if($flag==0)
-				echo '<div class="btn btn-danger">Environment awaiting validation from Caregiver</div>';
-			else
-				echo '<div class="btn btn-success">Environment validated by Caregiver</div>';
-		
+			
 			$imgarray = [];
 			$videoarray = [];
 			
@@ -72,7 +68,7 @@ include "userauth.php";
 				$link = "";
 				$connection = "";
 
-				if($temp_imgid!=0)
+				//if($temp_imgid!=0)
 				{
 					$subquery2 = "SELECT * FROM imagedb WHERE img_id=$temp_imgid";
 					$subresults2 = mysqli_query($con, $subquery2);
@@ -98,7 +94,7 @@ include "userauth.php";
 					array_push($imgarray,$link);
 					array_push($videoarray,$connection);
 				}
-				else
+			/*	else
 				{
 					$link = "0";
 					$connection = "0";	
@@ -107,7 +103,7 @@ include "userauth.php";
 					array_push($imgarray,$link);
 					array_push($videoarray,$connection);
 				}
-				
+			*/
 				
 			}
 			
@@ -121,48 +117,84 @@ include "userauth.php";
 	<?php
 	
 	$availableimgids = [];
+	$availableimgnames = [];
 	$availableimglinks = [];
 	
-	$query = "SELECT img_id, img_link FROM imagedb where user_id=$user_id and s_id=$current_s_id";
+	array_push($availableimgids, 0);
+	array_push($availableimgnames, 'default');
+	array_push($availableimglinks, 'images/default.jpg');
+	
+	$query = "SELECT img_id, img_name, img_link FROM imagedb where user_id=$user_id and s_id=$current_s_id";
 	
 	$results = mysqli_query($con, $query);
 	while($row = mysqli_fetch_array($results))
 	{
+		$img_name = $row['img_name'];
+		if($img_name=='')
+		{
+			$img_name = 'Unnamed image';
+		}
+		
 		array_push($availableimgids, $row['img_id']);
+		array_push($availableimgnames, $img_name);
 		array_push($availableimglinks, $row['img_link']);
 	}
 
 		
-		function get_place($i, $imgarray, $availableimgids, $availableimglinks)
+		function get_place($i, $imgarray, $availableimgids, $availableimgnames, $availableimglinks)
 		{
 			if($imgarray[$i-1]!='0')
 			{
-				echo '<div class="placeholder"><img src="'.$imgarray[$i-1].'" /></div>';	
-			}
-			
-			else
-			{
-				echo '<select id="placeholder_'.$i.'" class="placeholder">';
+				echo '<div class="placeholder"><div><span>Placeholder #'.$i.'</span><div class="imgholder"><img src="'.$imgarray[$i-1].'" /></div>';
 				
-				echo '<option><img src="hello.png"/></option>';
+				echo '<select id="placeholder_'.$i.'" name="placeholder_'.$i.'" class="imglist">';
 				
 				$optioncount = 0;
 				foreach($availableimglinks as $option)
 				{
-					echo '<option value="'.$availableimgids[$optioncount].'"><div>yoyo<img src="yoyo.png" alt="img_values" ></div></option>';
+					echo '<option value="'.$availableimgids[$optioncount].'"><div>'.$availableimgnames[$optioncount].'<img src="'.$availableimglinks[$optioncount].'" alt="img_values" ></div></option>';
 					$optioncount = $optioncount + 1;
 				}
 				
 				echo '</select>	';
+				
+				
+				echo '</div></div>';	
+			}
+			
+			else
+			{
+				echo '<div class="placeholder"><div><span>Placeholder #'.$i.'</span><div class="imgholder"><img src="" /></div>';
+				echo '<select id="placeholder_'.$i.'"  name="placeholder_'.$i.'" class="imglist">';
+				
+				echo '<option><img src="images/default.jpg"/></option>';
+				
+				$optioncount = 0;
+				foreach($availableimglinks as $option)
+				{
+					echo '<option value="'.$availableimgids[$optioncount].'"><div>'.$availableimgnames[$optioncount].'<img src="'.$availableimglinks[$optioncount].'" alt="img_values" ></div></option>';
+					$optioncount = $optioncount + 1;
+				}
+				
+				echo '</select>	';
+				echo '</div></div>';
 			}
 		}
 		
 		
 		
+		echo '<form action="envsave_backend.php" method="POST">
+		<input type="text" value="'.$env_id.'" name="env_id" hidden />
+		<input type="text" value="'.$env_config_id.'" name="env_config_id" hidden />
+		<input type="text" value="'.$img_no.'" name="imgno" hidden />
+		';
+		
+		
+		
 		echo '<div class="env_side" style="background:url('.$side1.')">';
 
-			echo get_place(1, $imgarray, $availableimgids, $availableimglinks);
-			echo get_place(2, $imgarray, $availableimgids, $availableimglinks);
+			echo get_place(1, $imgarray, $availableimgids, $availableimgnames, $availableimglinks);
+			echo get_place(2, $imgarray, $availableimgids, $availableimgnames, $availableimglinks);
 		
 		echo '</div>';
 		
@@ -170,25 +202,28 @@ include "userauth.php";
 		
 		echo '<div class="env_side" style="background:url('.$side2.')">';
 
-			echo get_place(3, $imgarray, $availableimgids, $availableimglinks);
-			echo get_place(4, $imgarray, $availableimgids, $availableimglinks);
+			echo get_place(3, $imgarray, $availableimgids, $availableimgnames, $availableimglinks);
+			echo get_place(4, $imgarray, $availableimgids, $availableimgnames, $availableimglinks);
 		
 		echo '</div>';
 		
 		echo '<div class="env_side" style="background:url('.$side3.')">';
 
-			echo get_place(5, $imgarray, $availableimgids, $availableimglinks);
-			echo get_place(6, $imgarray, $availableimgids, $availableimglinks);
+			echo get_place(5, $imgarray, $availableimgids, $availableimgnames, $availableimglinks);
+			echo get_place(6, $imgarray, $availableimgids, $availableimgnames, $availableimglinks);
 		
 		echo '</div>';
 		
 		echo '<div class="env_side" style="background:url('.$side4.')">';
 
-			echo get_place(7, $imgarray, $availableimgids, $availableimglinks);
-			echo get_place(8, $imgarray, $availableimgids, $availableimglinks);
+			echo get_place(7, $imgarray, $availableimgids, $availableimgnames, $availableimglinks);
+			echo get_place(8, $imgarray, $availableimgids, $availableimgnames, $availableimglinks);
 		
 		echo '</div>';
 		
+		
+		echo '<input type="submit" class="btn btn-primary" value="Save Environment">';
+		echo '</form>';
 		
 	?>
 

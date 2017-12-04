@@ -34,7 +34,7 @@
 			$tablename = $row['tablename'];
 			$env_id = $row['env_id'];
 			
-			$subquery = "SELECT * FROM ".$tablename." WHERE user_id=$user_id";
+			$subquery = "SELECT * FROM ".$tablename." WHERE user_id=$user_id and not flag = -2";
 			$subresults = mysqli_query($con, $subquery);
 
 			

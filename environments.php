@@ -98,7 +98,6 @@ include "userauth.php";
       <div class="modal-body delenv">
       
 		<form method="POST" action="delenv_backend.php">
-					
 					<h6>Environment ID</h6>
 					<input type="text" class="inptxt env_config_id" placeholder="Senior id" name="env_config_id" readonly /><br>
 					<input type="text" class="inptxt env_id" placeholder="Senior id" name="env_id" hidden readonly />
@@ -136,8 +135,15 @@ include "userauth.php";
 
 $count = 0;
 
-echo '<h2>Your Environments</h2>';
-	
+if(isset($_GET['s_id']) && isset($_GET['sname']))
+{
+	echo '<h2>Environments of '.$_GET['sname'].'</h2>';
+}
+else
+{
+	echo '<h2>Your Environments</h2>';
+}
+
 	$query = "SELECT * FROM environments where flag =1";
 	$results = mysqli_query($con, $query);
 	while($row = mysqli_fetch_array($results))
@@ -146,7 +152,26 @@ echo '<h2>Your Environments</h2>';
 		$tablename = $row['tablename'];
 		$env_id = $row['env_id'];
 		
-		$subquery = "SELECT * FROM ".$tablename." WHERE user_id=$user_id and flag =1";
+		
+		if($usertype>=2)
+		{
+			if(isset($_GET['s_id']) && isset($_GET['sname']))
+			{
+				$sname = $_GET['sname'];
+				$subquery = "SELECT * FROM ".$tablename." WHERE user_id=$user_id and s_id= $s_id and not flag =-2";
+			}
+			else
+			{
+				$subquery = "SELECT * FROM ".$tablename." WHERE user_id=$user_id and not flag =-2";
+			}
+		}
+		if($usertype==1)
+		{
+			$subquery = "SELECT * FROM ".$tablename." WHERE user_id=$user_id and s_id=$s_id and not flag =-2";
+		}
+		
+
+		
 		$subresults = mysqli_query($con, $subquery);
 
 		
@@ -156,6 +181,8 @@ echo '<h2>Your Environments</h2>';
 			$env_config_id = $subrow["env_config_id"];
 			$subquery2 = "SELECT fullname FROM seniors WHERE s_id='$s_id'";
 			$subresults2 = mysqli_query($con, $subquery2);
+			$dis_flag = $subrow['flag'];
+			$dis_timestamp = $subrow['timestamp'];
 
 			while($subrow2 = mysqli_fetch_array($subresults2))
 			{
@@ -167,12 +194,22 @@ echo '<h2>Your Environments</h2>';
 			echo '<h2>'.$seniorname.'</h2><h4>'.$envname.'</h4> 
 			<h4>
 			<h6>Senior id: '.$s_id.'</h6>';
+			
+			if($dis_flag==0)
+				echo '<div class="btn btn-info">Environment awaiting validation from Caregiver</div>';
+			else if($dis_flag==1)
+				echo '<div class="btn btn-success">Environment validated by Caregiver</div>';
+			else if($dis_flag==-1)
+			{
+				echo '<div class="btn btn-danger">Environment Rejected. Please do the neccesary changes and resubmit.</div>';
+			}
+			
 			echo '<div class="actionbtns">
 			<a href="index.php?pagetype=view&env_id='.$env_id.'&env_config_id='.$env_config_id.'" ><div class="btn btn-primary">View</div></a>
 			<a href="index.php?pagetype=edit&env_id='.$env_id.'&env_config_id='.$env_config_id.'" ><div class="btn btn-primary">Edit</div></a>
 			<div class="btn btn-danger delenvbtn" data-toggle="modal" data-target="#delenv" data-envconfigid="'.$env_config_id.'" data-envname="'.$envname.'" data-envid="'.$env_id.'" data-sname="'.$seniorname.'" data-sid="'.$s_id.'">Delete</div>
 			</div>';
-			echo '</div>';
+			echo '<br><i>Updated on: '.date('m/d/Y H:i:s', $dis_timestamp).'</i></div>';
 			
 			$count = $count + 1;
 		}

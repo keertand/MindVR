@@ -7,13 +7,22 @@ $obj = file_get_contents('php://input');
 $obj = json_decode($obj, TRUE );
 
 $service = $obj['service'];
-$env_id = $obj['env_id'];
-$env_config_id = $obj['env_config_id'];
 $user_id = $obj['user_id'];
 $token = $obj['token'];
 $handler_id = $obj['handler_id'];
+$env_id = $obj['env_id'];
+$env_config_id = $obj['env_config_id'];
 
-$s_id = $obj['s_id'];
+$img_no = $obj['img_no'];
+
+$imgarray = [];
+
+for($i=1;$i<=$img_no;$i++)
+{
+	array_push($imgarray,$obj['placeholder_'.$i]);
+}
+
+
 
 $ip = $obj['ip'];
 
@@ -58,31 +67,57 @@ function checkuser($user_id, $token)
 }
 	
 
-if(checkuser($user_id, $token))
+if(checkuser($handler_id, $token))
 {	
-	$profileno = 1;
-	$envtable = '';
 
-	$query = "select tablename from environments where env_id = '$env_id'";
+	$query = "select tablename from environments where env_id = $env_id";
 	$results = mysqli_query($con, $query);
 
 	while($row = mysqli_fetch_array($results))
 	{
-		$envtable = $row['tablename'];
+		$tablename = $row['tablename'];
 	}
-
 	
-	$query = "update $envtable set flag = -2 where env_config_id = $env_config_id";
+	
+	$existingimg = [];
+	
+	$query = "select * from $tablename where env_config_id=$env_config_id";
+	$results = mysqli_query($con, $query);
+	while($row = mysqli_fetch_array($results))
+	{
+		$img_no = $row['img_no'];
+		for($i=1;$i<=$img_no;$i++)
+		{
+			array_push($existingimg,$row['img_placeholder_'.$i]);
+		}
+	}
+	
+	$imgstring = implode(",",$existingimg);
+	
+	$query = "update imagedb set currentlyused = currentlyused - 1 where img_id in (".$imgstring.")";
+	$results = mysqli_query($con, $query);
+	
+	
+	$updation = "";
+	for($i=1;$i<=$img_no;$i++)
+	{
+		$updation .= 'img_placeholder_'.$i.' = '.$imgarray[$i-1].' ,';
+	}
+	
+	$query = "update $tablename set ".$updation." timestamp='$timestamp', flag = 0 where env_config_id = $env_config_id";
 	$results = mysqli_query($con, $query);
 
-	echo $query;
-	echo $results;
+	$imgstring = implode(",",$imgarray);
+	echo $imgstring;
 	
+	$query = "update imagedb set currentlyused = currentlyused + 1 where img_id in (".$imgstring.")";
+	$results = mysqli_query($con, $query);
+
 	
-	addlog(13,$activity,$timestamp,$user_id,$env_config_id,$handler_id,$ip);
+	addlog(12,$activity,$timestamp,$user_id,$env_config_id,$handler_id,$ip);
 
 	$status = 1;
-	$description = "Environment deleted successfully!";
+	$description = "Environment saved!";
 }
 else
 {

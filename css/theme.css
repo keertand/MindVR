@@ -332,15 +332,43 @@ margin:5px;
 
 .env_side .placeholder
 {
-	height:80px;
-	width:auto;	
+	height:300px;
+	width:220;
+	padding:20px;	
 	overflow:hidden;
-}
-
-.env_side .placeholder img
-{
-	height:100%;
-	width:auto;
 	
 }
 
+.env_side .placeholder span
+{
+	height:20px;
+	text-align:center;
+	color:black;
+}
+	
+.env_side .placeholder >div
+{
+	background:white;
+	border: 10px groove black;
+}
+
+.env_side .placeholder .imgholder
+{
+	width:100%;
+	height:180px;
+	overflow:hidden;
+}
+
+.env_side .placeholder .imgholder img
+{
+	width:100%;
+	height:auto;
+}
+
+
+
+.env_side .placeholder .imglist
+{
+	width:100%;
+	height:40px;
+}

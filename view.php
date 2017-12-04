@@ -64,6 +64,8 @@ include "userauth.php";
 			{
 				echo '<div class="btn btn-danger">Environment Rejected. Please do the neccesary changes and resubmit.</div>';
 			}
+			
+			echo '<a href="index.php?pagetype=edit&env_id='.$env_id.'&env_config_id='.$env_config_id.'"><div class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i>Edit Environment</div></a>';
 		
 			$imgarray = [];
 			$videoarray = [];
