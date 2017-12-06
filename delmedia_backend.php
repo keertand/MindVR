@@ -57,7 +57,7 @@ $response = json_decode($json_response, true);
 var_dump($json_response);
 
 
-//header('Location: index.php?pagetype=library');
+header('Location: index.php?pagetype=library');
 
 
 

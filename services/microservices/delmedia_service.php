@@ -119,7 +119,7 @@ if(checkuser($handler_id, $token))
 		$query = "Delete from imagedb where user_id=$user_id and img_id = ".$media_id;
 		$results = mysqli_query($con, $query);
 
-		addlog(4,$activity,$timestamp,$user_id,$img_id,$handler_id,$ip);
+		addlog(4,$activity,$timestamp,$user_id,$media_id,$handler_id,$ip);
 
 		$status = 1;
 		 

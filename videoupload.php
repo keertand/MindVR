@@ -38,8 +38,9 @@ echo "<h1>target: ".$target_file."</h1>";
 $uploadOk = 1;
 $videoFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
+
 if(isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    $check = True;//getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
@@ -72,7 +73,7 @@ if ($uploadOk == 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 		
-		$query = "insert into videodb (video_link, user_id, uploaded_by, video_name, uploadedon) values('$target_file','$user_id','$handler_id','$comment',0,'$timestamp')";
+		$query = "insert into videodb (video_link, user_id, s_id, uploaded_by, video_name, uploadedon) values('$target_file',$user_id,$s_id,$handler_id,'$comment',0,'$timestamp')";
 		$results = mysqli_query($con, $query);
 		echo $results;
 		

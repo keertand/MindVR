@@ -57,7 +57,7 @@ var_dump($json_response);
 
 
 echo $response;
-header('Location: index.php?pagetype=environments);
+header('Location: index.php?pagetype=environments');
 
 
 

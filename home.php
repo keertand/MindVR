@@ -19,7 +19,6 @@ include "userauth.php";
 		else if($usertype==2)
 		{
 			include "caregiverpage.php";
-			echo '<h1>hello '.$username.'</h1>';
 		}
 		else
 		{	
